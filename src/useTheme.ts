@@ -6,7 +6,7 @@ export const useCustomTheme = (mode: PaletteMode) => {
     palette: {
       mode,
       primary: {
-        main: "#4B516F",
+        main: "#797979",
       },
       secondary: {
         main: "#4B9EFE",

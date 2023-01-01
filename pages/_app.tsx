@@ -7,17 +7,15 @@ import { PaletteMode } from "@mui/material";
 import { useCustomTheme } from "../src/useTheme";
 import ThemeChangeButton from "../src/components/ThemeChangeButton";
 import { createContext, useEffect, useMemo, useState } from "react";
+import { AppProps } from "next/app";
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
-
-function MyApp() {
-  return <ThemeChangeButton iconOnly={false} />;
-}
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-export default function ToggleColorMode() {
+export default function MyApp(props: AppProps) {
+  const { Component, pageProps } = props;
   const [mode, setMode] = useState<PaletteMode>("light");
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -51,7 +49,7 @@ export default function ToggleColorMode() {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <MyApp />
+          <Component {...pageProps} />
         </ThemeProvider>
       </CacheProvider>
     </ColorModeContext.Provider>

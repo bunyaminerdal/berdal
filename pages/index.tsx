@@ -5,6 +5,7 @@ import type { NextPage } from "next";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import ThemeChangeButton from "../src/components/ThemeChangeButton";
 
 const Home: NextPage = () => {
   return (
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
           alignItems: "center",
         }}
       >
+        <ThemeChangeButton iconOnly={false} />
         <Typography component="h1" color="primary">
           Material UI v5 with Next.js in TypeScript
         </Typography>
