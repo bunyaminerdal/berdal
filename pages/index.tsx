@@ -17,6 +17,7 @@ const Home: NextPage = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          gap: 1,
         }}
       >
         <ThemeChangeButton iconOnly={false} />
