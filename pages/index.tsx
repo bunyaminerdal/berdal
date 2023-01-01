@@ -9,26 +9,23 @@ import ThemeChangeButton from "../src/components/ThemeChangeButton";
 
 const Home: NextPage = () => {
   return (
-    <Container maxWidth="lg">
-      <Box
-        sx={{
-          my: 5,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: 1,
-        }}
-      >
-        <ThemeChangeButton iconOnly={false} />
-        <Typography component="h1" color="primary">
-          Material UI v5 with Next.js in TypeScript
-        </Typography>
-        <Typography component="h2" color="secondary">
-          Boilerplate for building faster.
-        </Typography>
-      </Box>
-    </Container>
+    <Box
+      sx={{
+        my: 5,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 1,
+      }}
+    >
+      <Typography component="h1" color="primary">
+        Material UI v5 with Next.js in TypeScript
+      </Typography>
+      <Typography component="h2" color="secondary">
+        Boilerplate for building faster.
+      </Typography>
+    </Box>
   );
 };
 
