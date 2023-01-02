@@ -1,30 +1,71 @@
-// pages/index.tsx
-
-import * as React from "react";
 import type { NextPage } from "next";
-import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import ThemeChangeButton from "../src/components/ThemeChangeButton";
+import Image from "next/image";
+import bg from "../public/images/33.jpg";
+import { useTheme } from "@mui/material/styles";
+import { Avatar } from "@mui/material";
+import CopyRight from "../src/components/CopyRight";
 
 const Home: NextPage = () => {
+  const theme = useTheme();
   return (
     <Box
       sx={{
-        my: 5,
         display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: 1,
+        width: "100%",
+        height: "100%",
+        flexGrow: "1",
+        minWidth: "400px",
       }}
     >
-      <Typography component="h1" color="primary">
-        Material UI v5 with Next.js in TypeScript
-      </Typography>
-      <Typography component="h2" color="secondary">
-        Boilerplate for building faster.
-      </Typography>
+      <Box
+        color={`${theme.palette.primary.main}`}
+        width="100%"
+        height="100%"
+        gap="10px"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+      >
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "conter",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Avatar
+            alt="Bunyamin Erdal"
+            src="/images/avatar.jpg"
+            sx={{ width: 250, height: 250 }}
+          />
+          <Box
+            margin="50px 0 10px 0"
+            padding="10px"
+            borderBottom="1px solid black"
+          >
+            <Typography variant="h4">I&apos;m a Front-end Developer</Typography>
+          </Box>
+
+          <Box
+            display="flex"
+            justifyContent="space-around"
+            width="400px"
+            margin="10px"
+          >
+            <Image alt="react" src="/react.svg" width="36" height="36" />
+            <Image alt="react" src="/next.svg" width="124" height="36" />
+            <Image alt="react" src="/javascript.svg" width="36" height="36" />
+            <Image alt="react" src="/typescript.svg" width="36" height="36" />
+          </Box>
+          <Box marginTop="100px">
+            <CopyRight />
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };
