@@ -56,6 +56,8 @@ const Home: NextPage = () => {
             width="400px"
             margin="10px"
           >
+            <Image alt="react" src="/html5.svg" width="36" height="36" />
+            <Image alt="react" src="/css3.svg" width="36" height="36" />
             <Image alt="react" src="/react.svg" width="36" height="36" />
             <Image alt="react" src="/next.svg" width="124" height="36" />
             <Image alt="react" src="/javascript.svg" width="36" height="36" />
