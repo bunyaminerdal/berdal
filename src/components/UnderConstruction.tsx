@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import Image from "next/image";
 
 const UnderConstruction = () => {
+  //deneme
   return (
     <Box
       width="100%"
