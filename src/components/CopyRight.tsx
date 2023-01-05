@@ -7,7 +7,7 @@ const CopyRight = () => {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
-      <Link color="inherit" href="https://bunyaminerdal.com/">
+      <Link color="inherit" href="https://bunyaminerdal.com.tr/">
         Bünyamin Erdal
       </Link>{" "}
       {new Date().getFullYear()}
