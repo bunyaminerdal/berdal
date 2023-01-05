@@ -47,10 +47,12 @@ const SideBarItems = () => {
           >
             <LinkedInIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => push("https://twitter.com/bunyaminerdal")}>
             <TwitterIcon />
           </IconButton>
-          <IconButton>
+          <IconButton
+            onClick={() => push("https://www.instagram.com/bunyaminerdal/")}
+          >
             <InstagramIcon />
           </IconButton>
         </Box>
