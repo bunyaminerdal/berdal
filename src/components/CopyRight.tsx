@@ -1,7 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Link from "./BeLink";
 import React from "react";
-import Divider from "@mui/material/Divider";
 
 const CopyRight = () => {
   return (
