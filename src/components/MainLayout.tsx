@@ -20,7 +20,7 @@ function DashboardContent({ children }: React.PropsWithChildren) {
   const [isOpened, setIsOpened] = useState(false);
   return (
     <Box sx={{ height: "100vh", minWidth: "365px" }}>
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1 }} position="sticky" top="0">
         <AppBar
           position="static"
           sx={{
@@ -54,6 +54,8 @@ function DashboardContent({ children }: React.PropsWithChildren) {
         }}
       >
         <Box
+          position="sticky"
+          top="60px"
           sx={{
             width: { md: drawerWidth },
             borderRight: `1px solid ${theme.palette.primary.light}`,
@@ -61,6 +63,8 @@ function DashboardContent({ children }: React.PropsWithChildren) {
             flexDirection: "column",
             display: { xs: isOpened ? "flex" : "none", sm: "flex" },
             height: "100%",
+            zIndex: 1000,
+            backgroundColor: `${theme.palette.background.default}`,
           }}
         >
           <Box>
