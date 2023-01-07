@@ -28,15 +28,17 @@ const SideBarItems = () => {
         alignContent="center"
         alignItems="center"
         gap="10px"
-        padding="40px 10px 10px 10px"
+        padding="10px 10px 10px 10px"
       >
         <Avatar
           alt="Bunyamin Erdal"
           src="/images/avatar.jpg"
-          sx={{ width: 130, height: 130 }}
+          sx={{ width: 130, height: 130, display: { xs: "none", sm: "block" } }}
         />
-        <Typography>Bünyamin ERDAL</Typography>
-        <Box justifyContent="space-around" display="flex" width="250px">
+        <Typography sx={{ display: { xs: "none", sm: "block" } }}>
+          Bünyamin ERDAL
+        </Typography>
+        <Box justifyContent="space-around" display="flex">
           <IconButton onClick={() => push("https://github.com/bunyaminerdal")}>
             <GitHubIcon />
           </IconButton>

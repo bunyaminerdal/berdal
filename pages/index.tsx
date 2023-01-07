@@ -16,7 +16,6 @@ const Home: NextPage = () => {
         width: "100%",
         height: "100%",
         flexGrow: "1",
-        minWidth: "400px",
       }}
     >
       <Box
@@ -47,14 +46,18 @@ const Home: NextPage = () => {
             padding="10px"
             borderBottom="1px solid black"
           >
-            <Typography variant="h4">I&apos;m a Front-end Developer</Typography>
+            <Typography variant="h4">
+              <Box sx={{ textAlign: "center" }}>
+                I&apos;m a Front-end Developer
+              </Box>
+            </Typography>
           </Box>
 
           <Box
             display="flex"
             justifyContent="space-around"
-            width="400px"
             margin="10px"
+            gap="5px"
           >
             <Image alt="react" src="/html5.svg" width="36" height="36" />
             <Image alt="react" src="/css3.svg" width="36" height="36" />
