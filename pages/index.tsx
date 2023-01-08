@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Image from "next/image";
-import bg from "../public/images/33.jpg";
 import { useTheme } from "@mui/material/styles";
 import { Avatar } from "@mui/material";
 import CopyRight from "../src/components/CopyRight";
@@ -16,6 +15,7 @@ const Home: NextPage = () => {
         width: "100%",
         height: "100%",
         flexGrow: "1",
+        marginTop: { xs: "0", sm: "50px" },
       }}
     >
       <Box

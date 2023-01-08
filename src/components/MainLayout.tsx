@@ -9,20 +9,18 @@ import {
   IconButton,
   Toolbar,
   Typography,
-  Collapse,
+  Stack,
+  Grid,
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
-
-const drawerWidth = "380px";
-
 function DashboardContent({ children }: React.PropsWithChildren) {
   const theme = useTheme();
   const [isOpened, setIsOpened] = useState(false);
   return (
-    <Box sx={{ height: "100vh", minWidth: "365px" }}>
-      <Box sx={{ flexGrow: 1 }} position="sticky" top="0">
+    <Box height="100vh" overflow="hidden">
+      <Stack sx={{ height: { xs: "56px", sm: "0" } }}>
         <AppBar
-          position="static"
+          position="fixed"
           sx={{
             display: { xs: "block", sm: "none" },
           }}
@@ -46,42 +44,44 @@ function DashboardContent({ children }: React.PropsWithChildren) {
             </Typography>
           </Toolbar>
         </AppBar>
-      </Box>
-      <Box
-        sx={{
-          height: { sm: "100vh" },
-          display: { xs: "flow", sm: "flex" },
-        }}
-      >
-        <Box
-          position="sticky"
-          top="60px"
+      </Stack>
+      <Grid container flexDirection={{ xs: "row", sm: "row" }}>
+        <Grid xs={12} sm={4} md={3} lg={2}>
+          <Stack
+            sx={{
+              height: { xs: "auto", sm: "100vh" },
+              overflow: "auto",
+              display: { xs: isOpened ? "flex" : "none", sm: "flex" },
+              justifyContent: "space-between",
+              borderRight: `1px solid ${theme.palette.primary.light}`,
+            }}
+          >
+            <Box>
+              <SideBarItems />
+            </Box>
+            <Box>
+              <Divider />
+              <ThemeChangeButton />
+              <Divider />
+            </Box>
+          </Stack>
+        </Grid>
+        <Grid
+          xs={12}
+          sm={8}
+          md={9}
+          lg={10}
           sx={{
-            width: { md: drawerWidth },
-            borderRight: `1px solid ${theme.palette.primary.light}`,
-            justifyContent: "space-between",
-            flexDirection: "column",
-            display: { xs: isOpened ? "flex" : "none", sm: "flex" },
-            height: "100%",
-            zIndex: 1000,
-            backgroundColor: `${theme.palette.background.default}`,
+            height: {
+              xs: isOpened ? "calc(100vh - 407px)" : "calc(100vh - 56px)",
+              sm: "100vh",
+            },
+            overflow: "auto",
           }}
         >
-          <Box>
-            <SideBarItems />
-          </Box>
-          <Box>
-            <Divider />
-            <ThemeChangeButton />
-            <Divider />
-          </Box>
-        </Box>
-        <Box
-          sx={{ height: "100%", width: "100%", mt: { xs: "30px", sm: "0" } }}
-        >
-          {children}
-        </Box>
-      </Box>
+          <Box padding="10px">{children}</Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 }
