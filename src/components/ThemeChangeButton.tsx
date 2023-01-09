@@ -16,9 +16,9 @@ const ThemeChangeButton = () => {
     <ListItemButton onClick={colorMode.toggleColorMode}>
       <ListItemIcon>
         {theme.palette.mode === "dark" ? (
-          <Brightness7Icon />
-        ) : (
           <Brightness4Icon />
+        ) : (
+          <Brightness7Icon />
         )}
       </ListItemIcon>
       <ListItemText primary={`${theme.palette.mode} mode `} />
