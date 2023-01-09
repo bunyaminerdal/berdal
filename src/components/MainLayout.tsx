@@ -13,6 +13,7 @@ import {
   Grid,
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
+import Credential from "./Credential";
 function DashboardContent({ children }: React.PropsWithChildren) {
   const theme = useTheme();
   const [isOpened, setIsOpened] = useState(false);
@@ -60,6 +61,8 @@ function DashboardContent({ children }: React.PropsWithChildren) {
               <SideBarItems />
             </Box>
             <Box>
+              <Divider />
+              <Credential />
               <Divider />
               <ThemeChangeButton />
               <Divider />
