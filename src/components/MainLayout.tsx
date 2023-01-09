@@ -46,7 +46,7 @@ function DashboardContent({ children }: React.PropsWithChildren) {
         </AppBar>
       </Stack>
       <Grid container flexDirection={{ xs: "row", sm: "row" }}>
-        <Grid xs={12} sm={4} md={3} lg={2}>
+        <Grid item xs={12} sm={4} md={3} lg={2}>
           <Stack
             sx={{
               height: { xs: "auto", sm: "100vh" },
@@ -67,6 +67,7 @@ function DashboardContent({ children }: React.PropsWithChildren) {
           </Stack>
         </Grid>
         <Grid
+          item
           xs={12}
           sm={8}
           md={9}
