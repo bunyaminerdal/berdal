@@ -5,6 +5,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 const Credential = () => {
   const { data: session } = useSession();
   console.log("🚀 ~ file: Credential.tsx:7 ~ Credential ~ session", session);
+  console.log("🚀 ~ file: Credential.tsx:7 ~ Credential ~ session", session);
 
   return (
     <Box
