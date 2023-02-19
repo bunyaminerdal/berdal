@@ -1,10 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut, getCsrfToken } from "next-auth/react";
 
 const Credential = () => {
   const { data: session } = useSession();
-  console.log("🚀 ~ file: Credential.tsx:7 ~ Credential ~ session", session);
+  const token = getCsrfToken();
+  console.log("🚀 ~ file: Credential.tsx:8 ~ Credential ~ token", token);
   console.log("🚀 ~ file: Credential.tsx:7 ~ Credential ~ session", session);
 
   return (
