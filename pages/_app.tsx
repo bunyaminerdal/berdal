@@ -8,6 +8,7 @@ import { useCustomTheme } from "../src/useTheme";
 import { createContext, useEffect, useMemo, useState } from "react";
 import { AppProps } from "next/app";
 import MainLayout from "../src/components/MainLayout";
+import { SessionProvider } from "next-auth/react";
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
@@ -15,7 +16,10 @@ export const ColorModeContext = createContext({
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 export default function MyApp(props: AppProps) {
-  const { Component, pageProps } = props;
+  const {
+    Component,
+    pageProps: { session, ...pageProps },
+  } = props;
   const [mode, setMode] = useState<PaletteMode>("dark");
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -49,9 +53,11 @@ export default function MyApp(props: AppProps) {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <MainLayout>
-            <Component {...pageProps} />
-          </MainLayout>
+          <SessionProvider session={session}>
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
+          </SessionProvider>
         </ThemeProvider>
       </CacheProvider>
     </ColorModeContext.Provider>
