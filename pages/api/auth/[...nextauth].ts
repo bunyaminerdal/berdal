@@ -1,14 +1,11 @@
 import NextAuth, { Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import prisma from "../../../lib/prismadb";
 import { randomBytes, randomUUID } from "crypto";
 import { createClient } from "@supabase/supabase-js";
 import { JWT } from "next-auth/jwt";
 
 export default NextAuth({
-  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "Credentials",
