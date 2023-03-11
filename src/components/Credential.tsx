@@ -1,12 +1,17 @@
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 import { useSession, signIn, signOut, getCsrfToken } from "next-auth/react";
+import { getUserData } from "../services/user/userServices";
+import { useEffect } from "react";
 
 const Credential = () => {
   const { data: session } = useSession();
-  const token = getCsrfToken();
-  console.log("🚀 ~ file: Credential.tsx:8 ~ Credential ~ token", token);
-  console.log("🚀 ~ file: Credential.tsx:7 ~ Credential ~ session", session);
+  useEffect(() => {
+    if (session?.accessToken)
+      getUserData(session?.accessToken).then((data) =>
+        console.log("user data", data)
+      );
+  }, [session?.accessToken]);
 
   return (
     <Box
@@ -18,15 +23,22 @@ const Credential = () => {
       }}
     >
       {!session ? (
-        <Link href="#" onClick={() => signIn()}>
-          <Typography variant="body2" color="text.primary">
-            Sign In
-          </Typography>
-        </Link>
+        <>
+          <Link href="#" onClick={() => signIn()}>
+            <Typography variant="body2" color="text.primary">
+              Sign In
+            </Typography>
+          </Link>
+          <Link href="/sign-up">
+            <Typography variant="body2" color="text.primary">
+              Sign Up
+            </Typography>
+          </Link>
+        </>
       ) : (
         <>
           <Typography variant="body2" color="text.primary">
-            {session.user?.name}
+            {session.user?.fullName}
           </Typography>
           <Link href="#" onClick={() => signOut()}>
             <Typography variant="body2" color="text.primary">

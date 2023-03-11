@@ -1,11 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GitHubProvider from "next-auth/providers/github";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "../../../lib/prismadb";
-import { Prisma } from "@prisma/client";
-import { Session } from "inspector";
 import { randomBytes, randomUUID } from "crypto";
+import { createClient } from "@supabase/supabase-js";
+import { JWT } from "next-auth/jwt";
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -20,24 +20,26 @@ export default NextAuth({
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials?.email,
-          },
+      async authorize(credentials, req): Promise<any> {
+        const supabase = await createClient(
+          "https://rjjunowlkvvgoccqabwp.supabase.co",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqanVub3dsa3Z2Z29jY3FhYndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzU1MjI3OTcsImV4cCI6MTk5MTA5ODc5N30.Iql0oDsSHU42-JnZUeaY0I9zCEO8qiX-dDrwYgY2hfI",
+          {
+            auth: {
+              autoRefreshToken: false,
+              persistSession: false,
+              detectSessionInUrl: false,
+            },
+          }
+        );
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email: credentials?.email ?? "",
+          password: credentials?.password ?? "",
         });
 
         // Add logic here to look up the user from the credentials supplied
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          const account = await prisma.account.findFirst({
-            where: {
-              userId: user.id as string,
-              provider: "credentials",
-            },
-          });
-          if (!account) throw new Error("user not found");
-          return user;
+        if (data) {
+          return data;
         } else {
           // If you return null then an error will be displayed advising the user to check their details.
           throw new Error("user not found");
@@ -46,36 +48,39 @@ export default NextAuth({
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET,
+  },
   session: {
-    // Choose how you want to save the user session.
-    // The default is `"jwt"`, an encrypted JWT (JWE) stored in the session cookie.
-    // If you use an `adapter` however, we default it to `"database"` instead.
-    // You can still force a JWT session by explicitly defining `"jwt"`.
-    // When using `"database"`, the session cookie will only contain a `sessionToken` value,
-    // which is used to look up the session in the database.
     strategy: "jwt",
-
     // Seconds - How long until an idle session expires and is no longer valid.
     maxAge: 30 * 24 * 60 * 60, // 30 days
-
-    // Seconds - Throttle how frequently to write to database to extend a session.
-    // Use it to limit write operations. Set to 0 to always update the database.
-    // Note: This option is ignored if using JSON Web Tokens
-    updateAge: 24 * 60 * 60, // 24 hours
-    // The session token is usually either a random UUID or string, however if you
-    // need a more customized session token string, you can define your own generate function.
-    generateSessionToken: () => {
-      return randomUUID?.() ?? randomBytes(32).toString("hex");
-    },
   },
   callbacks: {
-    async session({ session, token }) {
-      console.log("🚀 ~ file: [...nextauth].ts:74 ~ session ~ token", token);
-      session.accessToken = token.jti;
-      console.log(
-        "🚀 ~ file: [...nextauth].ts:75 ~ session ~ session",
-        session
-      );
+    async jwt({ token, user }): Promise<JWT> {
+      if (user) {
+        const userrr = {
+          id: user?.user.id ?? "",
+          email: user?.user.email ?? "",
+          role: user?.user.role ?? "",
+          fullName: user?.user.user_metadata.fullName ?? "",
+        };
+        token.user = userrr;
+        token.email = user.user.email;
+        token.access_token = user.session.access_token;
+        token.refresh_token = user.session.refresh_token;
+      }
+      return token;
+    },
+    async session({ session, token }): Promise<Session> {
+      if (token) {
+        session.accessToken = token.access_token;
+        session.refreshToken = token.refresh_token;
+        if (token.user) {
+          session.user = token.user;
+        }
+      }
       return session;
     },
   },
