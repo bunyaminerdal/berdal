@@ -22,8 +22,8 @@ export default NextAuth({
       },
       async authorize(credentials, req): Promise<any> {
         const supabase = await createClient(
-          "https://rjjunowlkvvgoccqabwp.supabase.co",
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqanVub3dsa3Z2Z29jY3FhYndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzU1MjI3OTcsImV4cCI6MTk5MTA5ODc5N30.Iql0oDsSHU42-JnZUeaY0I9zCEO8qiX-dDrwYgY2hfI",
+          process.env.SUPABASE_URL ?? "",
+          process.env.SUPABASE_ANON ?? "",
           {
             auth: {
               autoRefreshToken: false,
