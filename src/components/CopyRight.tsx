@@ -1,17 +1,28 @@
-import Typography from "@mui/material/Typography";
-import Link from "./BeLink";
 import React from "react";
+import { Box, Typography } from "@mui/material";
+import { Link as MUILink } from "@mui/material";
 
 const CopyRight = () => {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://bunyaminerdal.com.tr/">
-        Bünyamin Erdal
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: "5px",
+        flexDirection: "row",
+      }}
+    >
+      <Typography variant="body2">{"Copyright ©"}</Typography>
+      <MUILink href="https://bunyaminerdal.com.tr">
+        <Typography textTransform="none" variant="body2">
+          {"Bünyamin ERDAL"}
+        </Typography>
+      </MUILink>
+      <Typography variant="body2">
+        {new Date().getFullYear()}
+        {"."}
+      </Typography>
+    </Box>
   );
 };
 

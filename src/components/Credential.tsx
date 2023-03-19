@@ -1,9 +1,9 @@
-import { Box, Typography } from "@mui/material";
-import { getToken } from "next-auth/jwt";
+import { Box, Typography, Link as MUILink, useTheme } from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
-
+import { useRouter } from "next/router";
 const Credential = () => {
+  const theme = useTheme();
+  const { push } = useRouter();
   const session = useSession();
   console.log("🚀 ~ file: Credential.tsx:8 ~ Credential ~ session:", session);
 
@@ -18,18 +18,16 @@ const Credential = () => {
             margin: "15px",
           }}
         >
-          <Link href="/">
-            <Typography variant="body2" color="text.primary">
-              {session.data.user?.name}
-            </Typography>
-          </Link>
-          <Typography
-            variant="body2"
-            color="text.primary"
+          <Typography variant="body2" color="text.primary">
+            {session.data.user?.name}
+          </Typography>
+          <MUILink
+            sx={{ cursor: "pointer" }}
+            color="inherit"
             onClick={() => signOut()}
           >
-            {"Sign Out"}
-          </Typography>
+            <Typography variant="body2">{"Sign Out"}</Typography>
+          </MUILink>
         </Box>
       ) : (
         <Box
@@ -40,16 +38,20 @@ const Credential = () => {
             margin: "15px",
           }}
         >
-          <Link href="/login">
-            <Typography variant="body2" color="text.primary">
-              Sign In
-            </Typography>
-          </Link>
-          <Link href="/register">
-            <Typography variant="body2" color="text.primary">
-              Sign Up
-            </Typography>
-          </Link>
+          <MUILink
+            sx={{ cursor: "pointer" }}
+            color="inherit"
+            onClick={() => push("/login")}
+          >
+            <Typography variant="body2">{"Sign In"}</Typography>
+          </MUILink>
+          <MUILink
+            sx={{ cursor: "pointer" }}
+            color="inherit"
+            onClick={() => push("/register")}
+          >
+            <Typography variant="body2">{"Sign Up"}</Typography>
+          </MUILink>
         </Box>
       )}
     </>
