@@ -5,6 +5,7 @@ import Link from "next/link";
 
 const Credential = () => {
   const session = useSession();
+  console.log("🚀 ~ file: Credential.tsx:8 ~ Credential ~ session:", session);
 
   return (
     <>
@@ -19,7 +20,7 @@ const Credential = () => {
         >
           <Link href="/">
             <Typography variant="body2" color="text.primary">
-              {session.data.user?.email}
+              {session.data.user?.name}
             </Typography>
           </Link>
           <Typography

@@ -1,7 +1,7 @@
 import prisma from "@lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import { hash } from "bcrypt";
-import { UserRegisterReturnType } from "@src/types/user-types";
+import { UserDataType } from "@src/types/user-types";
 
 export default async function handler(
   req: NextApiRequest,

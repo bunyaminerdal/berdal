@@ -1,17 +1,13 @@
-import {
-  UserRegisterDataType,
-  UserRegisterReturnType,
-} from "@src/types/user-types";
+import { UserRegisterDataType, UserDataType } from "@src/types/user-types";
 import axios from "axios";
 
 export const register = async (
   userRegisterData: UserRegisterDataType
 ): Promise<
-  | { data: UserRegisterReturnType; status: number }
-  | { data: string; status: number }
+  { data: UserDataType; status: number } | { data: string; status: number }
 > => {
   try {
-    const res = await axios.post<UserRegisterReturnType>(
+    const res = await axios.post<UserDataType>(
       "/api/auth/register",
       userRegisterData,
       {

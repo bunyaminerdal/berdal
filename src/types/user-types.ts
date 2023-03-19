@@ -14,6 +14,6 @@ export type UserRegisterDataType = {
   role?: UserRoleMap[];
   password: String;
 };
-export type UserRegisterReturnType = Omit<UserRegisterDataType, "password"> & {
+export type UserDataType = Omit<UserRegisterDataType, "password"> & {
   id: string;
 };
