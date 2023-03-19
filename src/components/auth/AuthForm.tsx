@@ -4,6 +4,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { register } from "@src/services/auth-services";
 
 export default function AuthForm({ type }: { type: "login" | "register" }) {
   const [loading, setLoading] = useState(false);
@@ -29,24 +30,25 @@ export default function AuthForm({ type }: { type: "login" | "register" }) {
             }
           });
         } else {
-          fetch("/api/auth/register", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              email: e.currentTarget.email.value,
-              password: e.currentTarget.password.value,
-            }),
-          }).then(async (res) => {
-            setLoading(false);
-            if (res.status === 200) {
-              console.log("Account created! Redirecting to login...");
-              setTimeout(() => {
+          register({
+            email: e.currentTarget.email.value,
+            name: "ali baba",
+            password: e.currentTarget.password.value,
+          }).then((res) => {
+            switch (res.status) {
+              case 200:
+                console.log("The user has Created Successfully!", res.data);
+                setLoading(false);
                 router.push("/login");
-              }, 2000);
-            } else {
-              console.log(await res.text());
+                break;
+              case 400:
+                console.log(res.data);
+                setLoading(false);
+                break;
+              default:
+                console.log(res.data);
+                setLoading(false);
+                break;
             }
           });
         }

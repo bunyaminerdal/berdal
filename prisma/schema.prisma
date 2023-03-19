@@ -11,8 +11,21 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  createdAt DateTime @default(now())
-  email     String   @unique
-  password  String
+  id            String    @id @default(uuid())
+  createdAt     DateTime  @default(now())
+  email         String    @unique @db.VarChar(100)
+  role          Role[]    @default([USER, GUEST])
+  password      String
+  emailVerified DateTime?
+  phone         String?   @db.VarChar(50)
+  picture       String?
+  name          String    @db.VarChar(100)
+}
+
+enum Role {
+  USER
+  ADMIN
+  SUPER_USER
+  OWNER
+  GUEST
 }
