@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
+import { CssBaseline, Slide } from "@mui/material";
 import Head from "next/head";
 import createEmotionCache from "../src/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
@@ -9,6 +9,7 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import { AppProps } from "next/app";
 import MainLayout from "../src/components/MainLayout";
 import { SessionProvider } from "next-auth/react";
+import { SnackbarProvider } from "notistack";
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
@@ -53,11 +54,13 @@ export default function MyApp(props: AppProps) {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <SessionProvider session={session}>
-            <MainLayout>
-              <Component {...pageProps} />
-            </MainLayout>
-          </SessionProvider>
+          <SnackbarProvider maxSnack={3}>
+            <SessionProvider session={session}>
+              <MainLayout>
+                <Component {...pageProps} />
+              </MainLayout>
+            </SessionProvider>
+          </SnackbarProvider>
         </ThemeProvider>
       </CacheProvider>
     </ColorModeContext.Provider>
