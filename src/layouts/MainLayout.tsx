@@ -14,9 +14,12 @@ import {
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
 import Credential from "../components/Credential";
-function DashboardContent({ children }: React.PropsWithChildren) {
+function MainLayoutContent({ children }: React.PropsWithChildren) {
   const theme = useTheme();
   const [isOpened, setIsOpened] = useState(false);
+  const closeAppBar = () => {
+    setIsOpened(false);
+  };
   return (
     <Box height="100vh" overflow="hidden">
       <Stack sx={{ height: { xs: "56px", sm: "0" } }}>
@@ -58,11 +61,11 @@ function DashboardContent({ children }: React.PropsWithChildren) {
             }}
           >
             <Box>
-              <SideBarItems />
+              <SideBarItems closeAppBar={closeAppBar} />
             </Box>
             <Box>
               <Divider />
-              <Credential />
+              <Credential closeAppBar={closeAppBar} />
               <Divider />
               <ThemeChangeButton />
               <Divider />
@@ -90,6 +93,6 @@ function DashboardContent({ children }: React.PropsWithChildren) {
   );
 }
 
-export default function Dashboard({ children }: React.PropsWithChildren) {
-  return <DashboardContent>{children}</DashboardContent>;
+export default function MainLayout({ children }: React.PropsWithChildren) {
+  return <MainLayoutContent>{children}</MainLayoutContent>;
 }
