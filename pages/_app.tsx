@@ -7,7 +7,7 @@ import { PaletteMode } from "@mui/material";
 import { useCustomTheme } from "@src/useTheme";
 import { createContext, useEffect, useMemo, useState } from "react";
 import { AppProps } from "next/app";
-import MainLayout from "@components/MainLayout";
+import MainLayout from "@src/layouts/MainLayout";
 import { SessionProvider } from "next-auth/react";
 import { SnackbarProvider, closeSnackbar } from "notistack";
 import CloseIcon from "@mui/icons-material/Close";

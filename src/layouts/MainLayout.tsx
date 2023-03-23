@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
-import SideBarItems from "./SideBarItems";
-import ThemeChangeButton from "./ThemeChangeButton";
+import SideBarItems from "../components/SideBarItems";
+import ThemeChangeButton from "../components/ThemeChangeButton";
 import { useTheme } from "@mui/material/styles";
 import {
   AppBar,
@@ -13,7 +13,7 @@ import {
   Grid,
 } from "@mui/material";
 import { Menu } from "@mui/icons-material";
-import Credential from "./Credential";
+import Credential from "../components/Credential";
 function DashboardContent({ children }: React.PropsWithChildren) {
   const theme = useTheme();
   const [isOpened, setIsOpened] = useState(false);
