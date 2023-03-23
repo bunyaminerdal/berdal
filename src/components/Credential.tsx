@@ -1,11 +1,17 @@
-import { Box, Typography, Link as MUILink, useTheme } from "@mui/material";
+import { Box, Typography, Link as MUILink, Button } from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
+import { useContext, useEffect } from "react";
+import { spinnerContext } from "./SpinnerProvider";
 const Credential = () => {
-  const theme = useTheme();
   const { push } = useRouter();
   const session = useSession();
-  console.log("🚀 ~ file: Credential.tsx:8 ~ Credential ~ session:", session);
+  const { enqueueSnackbar } = useSnackbar();
+  const setSpin = useContext(spinnerContext);
+  useEffect(() => {
+    setSpin && setSpin(session.status === "loading");
+  }, [session.status, setSpin]);
 
   return (
     <>
@@ -24,7 +30,10 @@ const Credential = () => {
           <MUILink
             sx={{ cursor: "pointer" }}
             color="inherit"
-            onClick={() => signOut()}
+            onClick={() => {
+              signOut();
+              enqueueSnackbar("Sign out Successfully!", { variant: "success" });
+            }}
           >
             <Typography variant="body2">{"Sign Out"}</Typography>
           </MUILink>

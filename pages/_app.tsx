@@ -1,15 +1,17 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline, Slide } from "@mui/material";
+import { Button, CssBaseline, IconButton, Slide } from "@mui/material";
 import Head from "next/head";
-import createEmotionCache from "../src/createEmotionCache";
+import createEmotionCache from "@src/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
 import { PaletteMode } from "@mui/material";
-import { useCustomTheme } from "../src/useTheme";
+import { useCustomTheme } from "@src/useTheme";
 import { createContext, useEffect, useMemo, useState } from "react";
 import { AppProps } from "next/app";
-import MainLayout from "../src/components/MainLayout";
+import MainLayout from "@components/MainLayout";
 import { SessionProvider } from "next-auth/react";
-import { SnackbarProvider } from "notistack";
+import { SnackbarProvider, closeSnackbar } from "notistack";
+import CloseIcon from "@mui/icons-material/Close";
+import SpinnerProvider from "@components/SpinnerProvider";
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
@@ -54,13 +56,22 @@ export default function MyApp(props: AppProps) {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <SnackbarProvider maxSnack={3}>
-            <SessionProvider session={session}>
-              <MainLayout>
-                <Component {...pageProps} />
-              </MainLayout>
-            </SessionProvider>
-          </SnackbarProvider>
+          <SpinnerProvider>
+            <SnackbarProvider
+              maxSnack={3}
+              action={(snackbarId) => (
+                <IconButton onClick={() => closeSnackbar(snackbarId)}>
+                  <CloseIcon />
+                </IconButton>
+              )}
+            >
+              <SessionProvider session={session}>
+                <MainLayout>
+                  <Component {...pageProps} />
+                </MainLayout>
+              </SessionProvider>
+            </SnackbarProvider>
+          </SpinnerProvider>
         </ThemeProvider>
       </CacheProvider>
     </ColorModeContext.Provider>
