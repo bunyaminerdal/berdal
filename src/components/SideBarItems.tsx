@@ -18,7 +18,7 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
 
-const SideBarItems = () => {
+const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
   const { push } = useRouter();
   return (
     <>
@@ -60,31 +60,56 @@ const SideBarItems = () => {
         </Box>
       </Stack>
       <Divider />
-      <ListItemButton onClick={() => push("/")}>
+      <ListItemButton
+        onClick={() => {
+          closeAppBar();
+          push("/");
+        }}
+      >
         <ListItemIcon>
           <HomeIcon />
         </ListItemIcon>
         <ListItemText primary="Home" />
       </ListItemButton>
-      <ListItemButton onClick={() => push("/about")}>
+      <ListItemButton
+        onClick={() => {
+          closeAppBar();
+          push("/about");
+        }}
+      >
         <ListItemIcon>
           <EmojiPeopleIcon />
         </ListItemIcon>
         <ListItemText primary="About me" />
       </ListItemButton>
-      <ListItemButton onClick={() => push("/blog")}>
+      <ListItemButton
+        onClick={() => {
+          closeAppBar();
+          push("/blog");
+        }}
+      >
         <ListItemIcon>
           <NewspaperIcon />
         </ListItemIcon>
         <ListItemText primary="Blog" />
       </ListItemButton>
-      <ListItemButton onClick={() => push("/projects")}>
+      <ListItemButton
+        onClick={() => {
+          closeAppBar();
+          push("/projects");
+        }}
+      >
         <ListItemIcon>
           <FolderIcon />
         </ListItemIcon>
         <ListItemText primary="Projects" />
       </ListItemButton>
-      <ListItemButton onClick={() => push("/contact")}>
+      <ListItemButton
+        onClick={() => {
+          closeAppBar();
+          push("/contact");
+        }}
+      >
         <ListItemIcon>
           <ConnectWithoutContactIcon />
         </ListItemIcon>
