@@ -2,12 +2,15 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"]
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directURL = env("DIRECT_URL")
+  schemas   = ["public", "auth"]
 }
 
 model User {
@@ -20,6 +23,8 @@ model User {
   phone         String?   @db.VarChar(50)
   picture       String?
   name          String    @db.VarChar(100)
+
+  @@schema("public")
 }
 
 enum Role {
@@ -28,4 +33,6 @@ enum Role {
   SUPER_USER
   OWNER
   GUEST
+
+  @@schema("public")
 }
