@@ -7,10 +7,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directURL = env("DIRECT_URL")
-  schemas   = ["public", "auth"]
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  schemas  = ["public", "auth"]
 }
 
 model User {
