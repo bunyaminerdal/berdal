@@ -7,7 +7,6 @@ import {
   FormHelperText,
   InputLabel,
 } from "@mui/material";
-import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -15,6 +14,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { register } from "@src/services/auth-services";
 import { useSnackbar } from "notistack";
+import { sendConfirmationEmail } from "@src/services/send-email";
 
 const schema = yup
   .object({
@@ -66,9 +66,10 @@ const RegisterForm = () => {
     }).then((res) => {
       switch (res.status) {
         case 200:
-          enqueueSnackbar("The user has Created Successfully!", {
-            variant: "error",
-          });
+          if (typeof res.data !== "string")
+            enqueueSnackbar(res.data.message, {
+              variant: "success",
+            });
           setLoading(false);
           push("/login");
           break;
