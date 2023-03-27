@@ -12,7 +12,7 @@ import {
   Stack,
   Grid,
 } from "@mui/material";
-import { Menu } from "@mui/icons-material";
+import Menu from "@mui/icons-material/Menu";
 import Credential from "../components/Credential";
 function MainLayoutContent({ children }: React.PropsWithChildren) {
   const theme = useTheme();
