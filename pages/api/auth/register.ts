@@ -28,7 +28,7 @@ export default async function handler(
     });
     const transporter = nodemailer.createTransport({
       host: process.env.EMAIL_HOST || "",
-      port: 2525,
+      port: process.env.EMAIL_PORT || "",
       auth: {
         user: process.env.EMAIL_USER || "",
         pass: process.env.EMAIL_PASS || "",
@@ -45,14 +45,15 @@ export default async function handler(
       subject: "bunyaminerdal.com.tr email verification",
       html: emailHtml,
     };
-
-    const sendedEmailRes = await transporter.sendMail(options);
-    if (sendedEmailRes.accepted.find((acc: string) => acc === email))
+    try {
+      await transporter.sendMail(options);
       return res.status(200).json({
         message: "Verification Email Sended",
         email: user.email,
         name: user.name,
       });
-    else return res.status(400).json("Email send failed!");
+    } catch (error) {
+      return res.status(400).json("Email send failed!");
+    }
   }
 }
