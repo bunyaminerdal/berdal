@@ -1,7 +1,10 @@
 import prisma from "@lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import { hash } from "bcrypt";
-import { UserDataType } from "@src/types/user-types";
+import { render } from "@react-email/render";
+import VerifyEmail from "@src/utils/VerifyEmail";
+import jwt from "jsonwebtoken";
+var nodemailer = require("nodemailer");
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,13 +27,42 @@ export default async function handler(
         password: await hash(password, 10),
       },
     });
-    res.status(200).json({
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      phone: user.phone,
-      picture: user.picture,
-      role: user.role,
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST || "",
+      port: process.env.EMAIL_PORT || "",
+      auth: {
+        user: process.env.EMAIL_USER || "",
+        pass: process.env.EMAIL_PASS || "",
+      },
     });
+    const token = jwt.sign(
+      {
+        email: user.email,
+      },
+      process.env.NEXTAUTH_SECRET ?? "no-secret"
+    );
+    const emailHtml = render(
+      VerifyEmail({
+        url: `https://bunyaminerdal.com.tr/verify-email?token=${token}`,
+        name: user.name,
+      })
+    );
+
+    const options = {
+      from: "register@bunyaminerdal.com.tr",
+      to: user.email,
+      subject: "bunyaminerdal.com.tr email verification",
+      html: emailHtml,
+    };
+    try {
+      await transporter.sendMail(options);
+      return res.status(200).json({
+        message: "Verification Email Sended",
+        email: user.email,
+        name: user.name,
+      });
+    } catch (error) {
+      return res.status(400).json("Email send failed!");
+    }
   }
 }
