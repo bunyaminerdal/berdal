@@ -2,13 +2,13 @@ import { Box, Typography, Link as MUILink, Button } from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
-import { useContext, useEffect } from "react";
-import { spinnerContext } from "./SpinnerProvider";
+import { useEffect } from "react";
+import { useSpinner } from "./SpinnerProvider";
 const Credential = ({ closeAppBar }: { closeAppBar: () => void }) => {
   const { push } = useRouter();
   const session = useSession();
   const { enqueueSnackbar } = useSnackbar();
-  const setSpin = useContext(spinnerContext);
+  const setSpin = useSpinner();
   useEffect(() => {
     setSpin && setSpin(session.status === "loading");
   }, [session.status, setSpin]);
