@@ -14,7 +14,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { register } from "@src/services/auth-services";
 import { useSnackbar } from "notistack";
-import { sendConfirmationEmail } from "@src/services/send-email";
 
 const schema = yup
   .object({

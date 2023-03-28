@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { verifyEmailWithToken } from "@src/services/verify-email";
 import { enqueueSnackbar } from "notistack";
 
@@ -10,20 +10,23 @@ const VerifyEmail = () => {
   } = useRouter();
   const verifyToken = token && token.toString();
 
-  const verifyEmail = async (verifyToken: string) => {
-    const res = await verifyEmailWithToken(verifyToken);
-    if (res.status === 200) {
-      enqueueSnackbar(res.data, { variant: "success" });
-      push("/login");
-    } else {
-      enqueueSnackbar(res.data, { variant: "error" });
-      push("/");
-    }
-  };
+  const verifyEmail = useCallback(
+    async (verifyToken: string) => {
+      const res = await verifyEmailWithToken(verifyToken);
+      if (res.status === 200) {
+        enqueueSnackbar(res.data, { variant: "success" });
+        push("/login");
+      } else {
+        enqueueSnackbar(res.data, { variant: "error" });
+        push("/");
+      }
+    },
+    [push]
+  );
   useEffect(() => {
     if (!verifyToken) return;
     verifyEmail(verifyToken);
-  }, [verifyToken]);
+  }, [verifyEmail, verifyToken]);
 
   return <div>Email Verifying...</div>;
 };
