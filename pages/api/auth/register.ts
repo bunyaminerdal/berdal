@@ -2,7 +2,8 @@ import prisma from "@lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import { hash } from "bcrypt";
 import { render } from "@react-email/render";
-import Email from "@src/utils/Email";
+import VerifyEmail from "@src/utils/VerifyEmail";
+import jwt from "jsonwebtoken";
 var nodemailer = require("nodemailer");
 
 export default async function handler(
@@ -34,9 +35,17 @@ export default async function handler(
         pass: process.env.EMAIL_PASS || "",
       },
     });
-    //TODO: add token to url
+    const token = jwt.sign(
+      {
+        email: user.email,
+      },
+      process.env.NEXTAUTH_SECRET ?? "no-secret"
+    );
     const emailHtml = render(
-      Email({ url: "https://bunyaminerdal.com.tr", name: user.name })
+      VerifyEmail({
+        url: `https://bunyaminerdal.com.tr/verify-email?token=${token}`,
+        name: user.name,
+      })
     );
 
     const options = {

@@ -1,38 +1,49 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from "next";
-import { render } from "@react-email/render";
-import Email from "@src/utils/Email";
-var nodemailer = require("nodemailer");
+import prisma from "@lib/prisma";
+import jwt from "jsonwebtoken";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<string>
 ) {
-  const { email, name } = req.body;
-  if (!email || !name)
-    return res.status(401).json("email and name is required to send email!");
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || "",
-    port: 2525,
-    auth: {
-      user: process.env.EMAIL_USER || "",
-      pass: process.env.EMAIL_PASS || "",
+  const { token } = req.body;
+  if (!token) return res.status(400).json("verify token not exists!");
+  let error = null;
+  let decodedToken: { email: string } | null = null;
+  await jwt.verify(
+    token,
+    process.env.NEXTAUTH_SECRET ?? "no-secret",
+    function (err: any, decoded: any) {
+      if (err) error = err;
+      decodedToken = decoded;
+    }
+  );
+  if (error) return res.status(400).json("Token is invalid or corrupted!");
+
+  if (!decodedToken)
+    return res.status(400).json("Token is invalid or corrupted!");
+  const exists = await prisma.user.findUnique({
+    where: {
+      email: (decodedToken as { email: string }).email,
     },
   });
-  //TODO: add token to url
-  const emailHtml = render(
-    Email({ url: "https://bunyaminerdal.com.tr", name })
-  );
-
-  const options = {
-    from: "register@bunyaminerdal.com.tr",
-    to: email,
-    subject: "bunyaminerdal.com.tr email verification",
-    html: emailHtml,
-  };
-
-  const sendedEmailRes = await transporter.sendMail(options);
-  if (sendedEmailRes.accepted.find((acc: string) => acc === email))
-    return res.status(200).json("Verification Email Sended");
-  else return res.status(401).json("Email send failed!");
+  if (!exists) return res.status(400).json("Token is invalid or corrupted!");
+  if (exists.emailVerified)
+    return res.status(200).json("Email already Verified!");
+  try {
+    await prisma.user.update({
+      where: {
+        email: (decodedToken as { email: string }).email,
+      },
+      data: {
+        emailVerified: new Date(),
+      },
+    });
+    return res
+      .status(200)
+      .json("Email verified successfully, You can login now!");
+  } catch (error) {
+    return res.status(400).json("Token is invalid or corrupted!");
+  }
 }
