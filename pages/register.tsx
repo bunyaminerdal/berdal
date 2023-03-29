@@ -9,5 +9,11 @@ const Register = () => {
     </RegisterPageLayout>
   );
 };
+Register.auth = {
+  role: null,
+  needAuth: false,
+  unAuthorizedUrl: "/",
+  loading: <div>Loading...</div>,
+};
 
 export default Register;

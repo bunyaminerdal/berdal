@@ -1,18 +1,33 @@
-import { Box, Typography, Link as MUILink, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Link as MUILink,
+  Button,
+  Skeleton,
+} from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
-import { useEffect } from "react";
-import { useSpinner } from "./SpinnerProvider";
+
 const Credential = ({ closeAppBar }: { closeAppBar: () => void }) => {
   const { push } = useRouter();
   const session = useSession();
   const { enqueueSnackbar } = useSnackbar();
-  const setSpin = useSpinner();
-  useEffect(() => {
-    setSpin && setSpin(session.status === "loading");
-  }, [session.status, setSpin]);
 
+  if (session.status === "loading")
+    return (
+      <Box
+        sx={{
+          align: "center",
+          display: "flex",
+          justifyContent: "space-around",
+          margin: "15px",
+        }}
+      >
+        <Skeleton variant="text" height="20px" width="55px" />
+        <Skeleton variant="text" height="20px" width="55px" />
+      </Box>
+    );
   return (
     <>
       {session.data ? (

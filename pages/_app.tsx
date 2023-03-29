@@ -12,18 +12,23 @@ import { SessionProvider } from "next-auth/react";
 import { SnackbarProvider, closeSnackbar } from "notistack";
 import CloseIcon from "@mui/icons-material/Close";
 import SpinnerProvider from "@components/SpinnerProvider";
+import Auth from "@src/utils/Auth";
+import { NextComponentType, NextPageContext } from "next";
+import { AuthEnabledComponentConfig } from "@src/types/auth.utils";
 
+type NextComponentWithAuth = NextComponentType<NextPageContext, any, {}> &
+  Partial<AuthEnabledComponentConfig>;
 const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
+
 export const useColorMode = () => useContext(ColorModeContext);
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
-export default function MyApp(props: AppProps) {
-  const {
-    Component,
-    pageProps: { session, ...pageProps },
-  } = props;
+export default function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   const [mode, setMode] = useState<PaletteMode>("dark");
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -51,14 +56,16 @@ export default function MyApp(props: AppProps) {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <Head>
+        <title>Bünyamin ERDAL</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <CacheProvider value={clientSideEmotionCache}>
         <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <SpinnerProvider>
             <SnackbarProvider
+              anchorOrigin={{ horizontal: "center", vertical: "top" }}
+              TransitionProps={{ direction: "right" }}
               maxSnack={3}
               action={(snackbarId) => (
                 <IconButton onClick={() => closeSnackbar(snackbarId)}>
@@ -67,9 +74,17 @@ export default function MyApp(props: AppProps) {
               )}
             >
               <SessionProvider session={session}>
-                <MainLayout>
-                  <Component {...pageProps} />
-                </MainLayout>
+                {(Component as NextComponentWithAuth)?.auth?.needAuth ? (
+                  <MainLayout>
+                    <Auth auth={(Component as NextComponentWithAuth)?.auth}>
+                      <Component {...pageProps} />
+                    </Auth>
+                  </MainLayout>
+                ) : (
+                  <MainLayout>
+                    <Component {...pageProps} />
+                  </MainLayout>
+                )}
               </SessionProvider>
             </SnackbarProvider>
           </SpinnerProvider>

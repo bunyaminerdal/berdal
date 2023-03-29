@@ -11,10 +11,24 @@ import {
   Typography,
   Stack,
   Grid,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
 } from "@mui/material";
 import Menu from "@mui/icons-material/Menu";
 import Credential from "../components/Credential";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import useRoleBaseAuth from "@src/hooks/useRoleBaseAuth";
+import { UserRoleMap } from "@src/types/user-types";
 function MainLayoutContent({ children }: React.PropsWithChildren) {
+  const { push } = useRouter();
+  const { data } = useSession();
+  const { isHaveAccessRight } = useRoleBaseAuth(
+    UserRoleMap.ADMIN,
+    data?.user?.role
+  );
   const theme = useTheme();
   const [isOpened, setIsOpened] = useState(false);
   const closeAppBar = () => {
@@ -64,6 +78,22 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
               <SideBarItems closeAppBar={closeAppBar} />
             </Box>
             <Box>
+              {!data || !isHaveAccessRight ? null : (
+                <>
+                  <Divider />
+                  <ListItemButton
+                    onClick={() => {
+                      closeAppBar();
+                      push("/admin");
+                    }}
+                  >
+                    <ListItemIcon>
+                      <AdminPanelSettingsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Amin Panel" />
+                  </ListItemButton>
+                </>
+              )}
               <Divider />
               <Credential closeAppBar={closeAppBar} />
               <Divider />

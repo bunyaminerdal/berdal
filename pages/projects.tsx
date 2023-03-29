@@ -1,8 +1,14 @@
 import React from "react";
 import UnderConstruction from "../src/components/UnderConstruction";
 
-const projects = () => {
+const Projects = () => {
   return <UnderConstruction />;
 };
+Projects.auth = {
+  role: null,
+  needAuth: false,
+  unAuthorizedUrl: "/",
+  loading: <div>Loading...</div>,
+};
 
-export default projects;
+export default Projects;

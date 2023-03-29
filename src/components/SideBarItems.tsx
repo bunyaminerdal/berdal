@@ -11,12 +11,12 @@ import FolderIcon from "@mui/icons-material/Folder";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import Divider from "@mui/material/Divider";
-import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
   const { push } = useRouter();
@@ -30,11 +30,23 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         gap="10px"
         padding="10px 10px 10px 10px"
       >
-        <Avatar
-          alt="Bunyamin Erdal"
-          src="/images/avatar.jpg"
-          sx={{ width: 130, height: 130, display: { xs: "none", sm: "block" } }}
-        />
+        <Box
+          sx={{
+            borderRadius: "60px",
+            overflow: "hidden",
+            width: "120px",
+            height: "120px",
+            display: { xs: "none", sm: "block" },
+          }}
+        >
+          <Image
+            alt="Bunyamin Erdal"
+            src="/images/avatar.jpg"
+            width={120}
+            height={130}
+            placeholder="empty"
+          />
+        </Box>
         <Typography sx={{ display: { xs: "none", sm: "block" } }}>
           Bünyamin ERDAL
         </Typography>
