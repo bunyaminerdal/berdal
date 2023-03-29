@@ -16,6 +16,7 @@ const UnderConstruction = () => {
         src="/images/underconstruction.png"
         width="300"
         height="300"
+        placeholder="empty"
       />
     </Box>
   );

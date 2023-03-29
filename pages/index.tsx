@@ -1,12 +1,10 @@
-import type { NextPage } from "next";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Image from "next/image";
 import { useTheme } from "@mui/material/styles";
-import { Avatar } from "@mui/material";
 import CopyRight from "../src/components/CopyRight";
 
-const Home: NextPage = () => {
+const Home = () => {
   const theme = useTheme();
   return (
     <Box
@@ -36,11 +34,22 @@ const Home: NextPage = () => {
             alignItems: "center",
           }}
         >
-          <Avatar
-            alt="Bunyamin Erdal"
-            src="/images/avatar.jpg"
-            sx={{ width: 250, height: 250 }}
-          />
+          <Box
+            sx={{
+              borderRadius: "125px",
+              overflow: "hidden",
+              width: "250px",
+              height: "250px",
+            }}
+          >
+            <Image
+              alt="Bunyamin Erdal"
+              src="/images/avatar.jpg"
+              width={250}
+              height={280}
+              placeholder="empty"
+            />
+          </Box>
           <Box
             margin="50px 0 10px 0"
             padding="10px"
@@ -59,12 +68,48 @@ const Home: NextPage = () => {
             margin="10px"
             gap="5px"
           >
-            <Image alt="react" src="/html5.svg" width="36" height="36" />
-            <Image alt="react" src="/css3.svg" width="36" height="36" />
-            <Image alt="react" src="/react.svg" width="36" height="36" />
-            <Image alt="react" src="/next.svg" width="124" height="36" />
-            <Image alt="react" src="/javascript.svg" width="36" height="36" />
-            <Image alt="react" src="/typescript.svg" width="36" height="36" />
+            <Image
+              placeholder="empty"
+              alt="react"
+              src="/html5.svg"
+              width="36"
+              height="36"
+            />
+            <Image
+              placeholder="empty"
+              alt="react"
+              src="/css3.svg"
+              width="36"
+              height="36"
+            />
+            <Image
+              placeholder="empty"
+              alt="react"
+              src="/react.svg"
+              width="36"
+              height="36"
+            />
+            <Image
+              placeholder="empty"
+              alt="react"
+              src="/next.svg"
+              width="124"
+              height="36"
+            />
+            <Image
+              placeholder="empty"
+              alt="react"
+              src="/javascript.svg"
+              width="36"
+              height="36"
+            />
+            <Image
+              placeholder="empty"
+              alt="react"
+              src="/typescript.svg"
+              width="36"
+              height="36"
+            />
           </Box>
           <Box marginTop="100px">
             <CopyRight />
@@ -74,5 +119,10 @@ const Home: NextPage = () => {
     </Box>
   );
 };
-
+Home.auth = {
+  role: null,
+  needAuth: false,
+  unAuthorizedUrl: "/",
+  loading: <div>Loading...</div>,
+};
 export default Home;

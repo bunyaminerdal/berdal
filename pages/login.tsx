@@ -9,5 +9,11 @@ const Login = () => {
     </LoginPageLayout>
   );
 };
+Login.auth = {
+  role: null,
+  needAuth: false,
+  unAuthorizedUrl: "/",
+  loading: <div>Loading...</div>,
+};
 
 export default Login;
