@@ -5,7 +5,7 @@ import createEmotionCache from "@src/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
 import { PaletteMode } from "@mui/material";
 import { useCustomTheme } from "@src/useTheme";
-import { createContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { AppProps } from "next/app";
 import MainLayout from "@src/layouts/MainLayout";
 import { SessionProvider } from "next-auth/react";
@@ -13,9 +13,10 @@ import { SnackbarProvider, closeSnackbar } from "notistack";
 import CloseIcon from "@mui/icons-material/Close";
 import SpinnerProvider from "@components/SpinnerProvider";
 
-export const ColorModeContext = createContext({
+const ColorModeContext = createContext({
   toggleColorMode: () => {},
 });
+export const useColorMode = () => useContext(ColorModeContext);
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
 export default function MyApp(props: AppProps) {

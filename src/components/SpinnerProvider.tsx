@@ -3,14 +3,15 @@ import React, {
   createContext,
   Dispatch,
   SetStateAction,
+  useContext,
   useState,
 } from "react";
 import { HashLoader } from "react-spinners";
 
-export const spinnerContext = createContext<Dispatch<
-  SetStateAction<boolean>
-> | null>(null);
-
+const spinnerContext = createContext<Dispatch<SetStateAction<boolean>> | null>(
+  null
+);
+export const useSpinner = () => useContext(spinnerContext);
 export default function SpinnerProvider({ children }: React.PropsWithChildren) {
   const theme = useTheme();
   const [spin, setSpin] = useState(false);
