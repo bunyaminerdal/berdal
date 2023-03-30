@@ -49,9 +49,9 @@ export default async function handler(
     );
 
     const options = {
-      from: "register@bunyaminerdal.com.tr",
+      from: "no-reply@bunyaminerdal.com.tr",
       to: user.email,
-      subject: "bunyaminerdal.com.tr email verification",
+      subject: "bunyaminerdal.com.tr Email Verification",
       html: emailHtml,
     };
     try {
