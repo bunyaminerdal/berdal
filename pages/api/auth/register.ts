@@ -43,7 +43,7 @@ export default async function handler(
     );
     const emailHtml = render(
       VerifyEmail({
-        url: `https://bunyaminerdal.com.tr/verify-email?token=${token}`,
+        url: `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`,
         name: user.name,
       })
     );
