@@ -17,9 +17,10 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { SideBarItemMap, isActiveSideBarButton } from "@src/utils/helpers";
 
 const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
-  const { push } = useRouter();
+  const { push, pathname } = useRouter();
   return (
     <>
       <Stack
@@ -77,6 +78,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
           closeAppBar();
           push("/");
         }}
+        selected={isActiveSideBarButton(pathname, SideBarItemMap.home)}
       >
         <ListItemIcon>
           <HomeIcon />
@@ -88,6 +90,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
           closeAppBar();
           push("/about");
         }}
+        selected={isActiveSideBarButton(pathname, SideBarItemMap.about)}
       >
         <ListItemIcon>
           <EmojiPeopleIcon />
@@ -99,6 +102,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
           closeAppBar();
           push("/blog");
         }}
+        selected={isActiveSideBarButton(pathname, SideBarItemMap.blog)}
       >
         <ListItemIcon>
           <NewspaperIcon />
@@ -110,6 +114,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
           closeAppBar();
           push("/projects");
         }}
+        selected={isActiveSideBarButton(pathname, SideBarItemMap.projects)}
       >
         <ListItemIcon>
           <FolderIcon />
@@ -121,6 +126,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
           closeAppBar();
           push("/contact");
         }}
+        selected={isActiveSideBarButton(pathname, SideBarItemMap.contact)}
       >
         <ListItemIcon>
           <ConnectWithoutContactIcon />

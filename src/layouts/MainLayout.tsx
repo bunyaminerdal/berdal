@@ -22,8 +22,9 @@ import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import useRoleBaseAuth from "@src/hooks/useRoleBaseAuth";
 import { UserRoleMap } from "@src/types/user-types";
+import { SideBarItemMap, isActiveSideBarButton } from "@src/utils/helpers";
 function MainLayoutContent({ children }: React.PropsWithChildren) {
-  const { push } = useRouter();
+  const { push, pathname } = useRouter();
   const { data } = useSession();
   const { isHaveAccessRight } = useRoleBaseAuth(
     UserRoleMap.ADMIN,
@@ -38,6 +39,7 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
     <Box height="100vh" overflow="hidden">
       <Stack sx={{ height: { xs: "56px", sm: "0" } }}>
         <AppBar
+          enableColorOnDark
           position="fixed"
           sx={{
             display: { xs: "block", sm: "none" },
@@ -86,11 +88,15 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
                       closeAppBar();
                       push("/admin");
                     }}
+                    selected={isActiveSideBarButton(
+                      pathname,
+                      SideBarItemMap.admin
+                    )}
                   >
                     <ListItemIcon>
                       <AdminPanelSettingsIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Amin Panel" />
+                    <ListItemText primary="Admin Panel" />
                   </ListItemButton>
                 </>
               )}
@@ -110,7 +116,11 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
           lg={10}
           sx={{
             height: {
-              xs: isOpened ? "calc(100vh - 407px)" : "calc(100vh - 56px)",
+              xs: isOpened
+                ? data && isHaveAccessRight
+                  ? "calc(100vh - 505px)"
+                  : "calc(100vh - 457px)"
+                : "calc(100vh - 56px)",
               sm: "100vh",
             },
             overflow: "auto",
