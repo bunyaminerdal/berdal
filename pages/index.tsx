@@ -38,7 +38,7 @@ const Home = () => {
               overflow: "hidden",
               width: "250px",
               height: "250px",
-              border: "2px solid white",
+              border: "2px solid #3C1B6D",
               boxShadow: "1px 3px 7px 7px rgba(30, 100, 137, .3)",
             }}
           >
@@ -53,7 +53,7 @@ const Home = () => {
           <Box
             margin="50px 0 10px 0"
             padding="10px"
-            borderBottom="1px solid black"
+            borderBottom="1px solid #3C1B6D"
           >
             <Typography color="text.primary" variant="h4">
               <Box sx={{ textAlign: "center" }}>

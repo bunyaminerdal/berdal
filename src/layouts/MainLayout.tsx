@@ -46,14 +46,6 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
           }}
         >
           <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              sx={{ mr: 2 }}
-              onClick={() => setIsOpened(!isOpened)}
-            >
-              <Menu />
-            </IconButton>
             <Typography
               variant="h6"
               noWrap
@@ -62,6 +54,14 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
             >
               Bünyamin ERDAL
             </Typography>
+            <IconButton
+              size="large"
+              edge="start"
+              sx={{ ml: 2, background: "transparent" }}
+              onClick={() => setIsOpened(!isOpened)}
+            >
+              <Menu />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Stack>
@@ -73,7 +73,7 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
               overflow: "auto",
               display: { xs: isOpened ? "flex" : "none", sm: "flex" },
               justifyContent: "space-between",
-              borderRight: `1px solid ${theme.palette.primary.light}`,
+              borderRight: `1px solid ${theme.palette.primary.main}`,
             }}
           >
             <Box>
@@ -122,7 +122,7 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
               xs: isOpened
                 ? data && isHaveAccessRight
                   ? "calc(100vh - 505px)"
-                  : "calc(100vh - 457px)"
+                  : "calc(100vh - 487px)"
                 : "calc(100vh - 56px)",
               sm: "100vh",
             },

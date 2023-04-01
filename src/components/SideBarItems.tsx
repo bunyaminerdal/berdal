@@ -18,9 +18,11 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { SideBarItemMap, isActiveSideBarButton } from "@src/utils/helpers";
 import Avatar from "@mui/material/Avatar";
+import { useTheme } from "@mui/material";
 
 const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
   const { push, pathname } = useRouter();
+  const theme = useTheme();
   return (
     <>
       <Stack
@@ -38,8 +40,8 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
             width: "120px",
             height: "120px",
             display: { xs: "none", sm: "block" },
-            border: "2px solid white",
-            boxShadow: "1px 3px 5px 5px rgba(30, 100, 137, .3)",
+            border: `2px solid ${theme.palette.primary.main}`,
+            boxShadow: `1px 3px 5px 5px ${theme.palette.secondary.light}`,
           }}
         >
           <Image

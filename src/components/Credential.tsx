@@ -2,7 +2,7 @@ import {
   Box,
   Typography,
   Link as MUILink,
-  Button,
+  ListItemButton,
   Skeleton,
 } from "@mui/material";
 import { signOut, useSession } from "next-auth/react";
@@ -36,15 +36,17 @@ const Credential = ({ closeAppBar }: { closeAppBar: () => void }) => {
             align: "center",
             display: "flex",
             justifyContent: "space-around",
-            margin: "15px",
           }}
         >
-          <Typography variant="body2" color="text.primary">
-            {session.data.user?.name}
-          </Typography>
-          <MUILink
-            sx={{ cursor: "pointer" }}
-            color="inherit"
+          <ListItemButton
+            sx={{ display: "flex", justifyContent: "center", maxWidth: "50%" }}
+          >
+            <Typography variant="body2" color="text.primary">
+              {session.data.user?.name}
+            </Typography>
+          </ListItemButton>
+          <ListItemButton
+            sx={{ display: "flex", justifyContent: "center", maxWidth: "50%" }}
             onClick={() => {
               closeAppBar();
               signOut();
@@ -52,7 +54,7 @@ const Credential = ({ closeAppBar }: { closeAppBar: () => void }) => {
             }}
           >
             <Typography variant="body2">{"Sign Out"}</Typography>
-          </MUILink>
+          </ListItemButton>
         </Box>
       ) : (
         <Box
@@ -60,29 +62,26 @@ const Credential = ({ closeAppBar }: { closeAppBar: () => void }) => {
             align: "center",
             display: "flex",
             justifyContent: "space-around",
-            margin: "15px",
           }}
         >
-          <MUILink
-            sx={{ cursor: "pointer" }}
-            color="inherit"
+          <ListItemButton
+            sx={{ display: "flex", justifyContent: "center", maxWidth: "50%" }}
             onClick={() => {
               closeAppBar();
               push("/login");
             }}
           >
             <Typography variant="body2">{"Sign In"}</Typography>
-          </MUILink>
-          <MUILink
-            sx={{ cursor: "pointer" }}
-            color="inherit"
+          </ListItemButton>
+          <ListItemButton
+            sx={{ display: "flex", justifyContent: "center", maxWidth: "50%" }}
             onClick={() => {
               closeAppBar();
               push("/register");
             }}
           >
             <Typography variant="body2">{"Sign Up"}</Typography>
-          </MUILink>
+          </ListItemButton>
         </Box>
       )}
     </>

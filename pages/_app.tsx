@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { Button, CssBaseline, IconButton, Slide } from "@mui/material";
+import { CssBaseline, IconButton } from "@mui/material";
 import Head from "next/head";
 import createEmotionCache from "@src/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
