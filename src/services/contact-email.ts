@@ -1,12 +1,13 @@
+import { ContactFormInputs } from "@components/contactPage/ContactForm";
 import axios from "axios";
 
-export const verifyEmailWithToken = async (
-  token: string
+export const contactEmail = async (
+  data: ContactFormInputs
 ): Promise<{ data: string; status: number }> => {
   try {
     const res = await axios.post<string>(
-      "/api/verify-email",
-      { token },
+      "/api/contact-email",
+      { data },
       {
         headers: { "Content-Type": "application/json" },
       }

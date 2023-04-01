@@ -36,7 +36,10 @@ type LoginFormInputs = {
 };
 
 const LoginForm = () => {
-  const { push } = useRouter();
+  const {
+    push,
+    query: { callbackUrl },
+  } = useRouter();
   const { enqueueSnackbar } = useSnackbar();
 
   const { handleSubmit, control } = useForm<LoginFormInputs>({
@@ -51,12 +54,13 @@ const LoginForm = () => {
       redirect: false,
       email: data.email,
       password: data.password,
+      callbackUrl: callbackUrl?.toString(),
     }).then((res) => {
       if (res?.ok) {
         enqueueSnackbar("Logged in Successfully, Welcome!", {
           variant: "success",
         });
-        push("/");
+        push(callbackUrl ? callbackUrl.toString() : "/");
       } else {
         enqueueSnackbar(res?.error, {
           variant: "error",
