@@ -12,9 +12,9 @@ import {
   Stack,
   Grid,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
 } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/icons-material/Menu";
 import Credential from "../components/Credential";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
@@ -93,10 +93,13 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
                       SideBarItemMap.admin
                     )}
                   >
-                    <ListItemIcon>
+                    <Avatar>
                       <AdminPanelSettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Admin Panel" />
+                    </Avatar>
+                    <ListItemText
+                      sx={{ marginLeft: "15px" }}
+                      primary="Admin Panel"
+                    />
                   </ListItemButton>
                 </>
               )}

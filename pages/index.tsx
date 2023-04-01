@@ -5,7 +5,6 @@ import { useTheme } from "@mui/material/styles";
 import CopyRight from "../src/components/CopyRight";
 
 const Home = () => {
-  const theme = useTheme();
   return (
     <Box
       sx={{
@@ -17,7 +16,6 @@ const Home = () => {
       }}
     >
       <Box
-        color={`${theme.palette.primary.main}`}
         width="100%"
         height="100%"
         gap="10px"
@@ -29,7 +27,7 @@ const Home = () => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "conter",
+            justifyContent: "center",
             flexDirection: "column",
             alignItems: "center",
           }}
@@ -40,6 +38,8 @@ const Home = () => {
               overflow: "hidden",
               width: "250px",
               height: "250px",
+              border: "2px solid white",
+              boxShadow: "1px 3px 7px 7px rgba(30, 100, 137, .3)",
             }}
           >
             <Image
@@ -55,7 +55,7 @@ const Home = () => {
             padding="10px"
             borderBottom="1px solid black"
           >
-            <Typography variant="h4">
+            <Typography color="text.primary" variant="h4">
               <Box sx={{ textAlign: "center" }}>
                 I&apos;m a Front-end Developer
               </Box>

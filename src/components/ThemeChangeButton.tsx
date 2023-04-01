@@ -6,20 +6,24 @@ import { useColorMode } from "../../pages/_app";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import Avatar from "@mui/material/Avatar";
 
 const ThemeChangeButton = () => {
   const theme = useTheme();
   const colorMode = useColorMode();
   return (
     <ListItemButton onClick={colorMode.toggleColorMode}>
-      <ListItemIcon>
+      <Avatar>
         {theme.palette.mode === "dark" ? (
           <Brightness4Icon />
         ) : (
           <Brightness7Icon />
         )}
-      </ListItemIcon>
-      <ListItemText primary={`${theme.palette.mode} mode `} />
+      </Avatar>
+      <ListItemText
+        sx={{ marginLeft: "15px" }}
+        primary={`${theme.palette.mode} mode `}
+      />
     </ListItemButton>
   );
 };
