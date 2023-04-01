@@ -12,13 +12,15 @@ const CopyRight = () => {
         flexDirection: "row",
       }}
     >
-      <Typography variant="body2">{"Copyright ©"}</Typography>
+      <Typography color="text.primary" variant="body2">
+        {"Copyright ©"}
+      </Typography>
       <MUILink href="https://bunyaminerdal.com.tr">
-        <Typography textTransform="none" variant="body2">
+        <Typography color="text.primary" textTransform="none" variant="body2">
           {"Bünyamin ERDAL"}
         </Typography>
       </MUILink>
-      <Typography variant="body2">
+      <Typography color="text.primary" variant="body2">
         {new Date().getFullYear()}
         {"."}
       </Typography>

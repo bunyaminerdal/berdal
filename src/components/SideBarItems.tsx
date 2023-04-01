@@ -1,5 +1,4 @@
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -18,6 +17,7 @@ import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { SideBarItemMap, isActiveSideBarButton } from "@src/utils/helpers";
+import Avatar from "@mui/material/Avatar";
 
 const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
   const { push, pathname } = useRouter();
@@ -38,6 +38,8 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
             width: "120px",
             height: "120px",
             display: { xs: "none", sm: "block" },
+            border: "2px solid white",
+            boxShadow: "1px 3px 5px 5px rgba(30, 100, 137, .3)",
           }}
         >
           <Image
@@ -51,7 +53,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         <Typography sx={{ display: { xs: "none", sm: "block" } }}>
           Bünyamin ERDAL
         </Typography>
-        <Box justifyContent="space-around" display="flex">
+        <Box justifyContent="space-around" display="flex" columnGap="5px">
           <IconButton onClick={() => push("https://github.com/bunyaminerdal")}>
             <GitHubIcon />
           </IconButton>
@@ -80,10 +82,10 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         }}
         selected={isActiveSideBarButton(pathname, SideBarItemMap.home)}
       >
-        <ListItemIcon>
+        <Avatar>
           <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Home" />
+        </Avatar>
+        <ListItemText sx={{ marginLeft: "15px" }} primary="Home" />
       </ListItemButton>
       <ListItemButton
         onClick={() => {
@@ -92,10 +94,10 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         }}
         selected={isActiveSideBarButton(pathname, SideBarItemMap.about)}
       >
-        <ListItemIcon>
+        <Avatar>
           <EmojiPeopleIcon />
-        </ListItemIcon>
-        <ListItemText primary="About me" />
+        </Avatar>
+        <ListItemText sx={{ marginLeft: "15px" }} primary="About me" />
       </ListItemButton>
       <ListItemButton
         onClick={() => {
@@ -104,10 +106,10 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         }}
         selected={isActiveSideBarButton(pathname, SideBarItemMap.blog)}
       >
-        <ListItemIcon>
+        <Avatar>
           <NewspaperIcon />
-        </ListItemIcon>
-        <ListItemText primary="Blog" />
+        </Avatar>
+        <ListItemText sx={{ marginLeft: "15px" }} primary="Blog" />
       </ListItemButton>
       <ListItemButton
         onClick={() => {
@@ -116,10 +118,10 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         }}
         selected={isActiveSideBarButton(pathname, SideBarItemMap.projects)}
       >
-        <ListItemIcon>
+        <Avatar>
           <FolderIcon />
-        </ListItemIcon>
-        <ListItemText primary="Projects" />
+        </Avatar>
+        <ListItemText sx={{ marginLeft: "15px" }} primary="Projects" />
       </ListItemButton>
       <ListItemButton
         onClick={() => {
@@ -128,10 +130,10 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         }}
         selected={isActiveSideBarButton(pathname, SideBarItemMap.contact)}
       >
-        <ListItemIcon>
+        <Avatar>
           <ConnectWithoutContactIcon />
-        </ListItemIcon>
-        <ListItemText primary="Contact me" />
+        </Avatar>
+        <ListItemText sx={{ marginLeft: "15px" }} primary="Contact me" />
       </ListItemButton>
     </>
   );

@@ -68,7 +68,10 @@ export default function MyApp({
               TransitionProps={{ direction: "right" }}
               maxSnack={3}
               action={(snackbarId) => (
-                <IconButton onClick={() => closeSnackbar(snackbarId)}>
+                <IconButton
+                  sx={{ background: "transparent" }}
+                  onClick={() => closeSnackbar(snackbarId)}
+                >
                   <CloseIcon />
                 </IconButton>
               )}
