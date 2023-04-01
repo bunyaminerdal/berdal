@@ -6,10 +6,10 @@ export const useCustomTheme = (mode: PaletteMode) => {
     palette: {
       mode,
       primary: {
-        main: "#1B5E6D",
+        main: "#3C1B6D",
       },
       secondary: {
-        main: "#3C1B6D",
+        main: "#1B5E6D",
       },
     },
     shape: {
