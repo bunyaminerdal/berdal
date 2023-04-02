@@ -87,6 +87,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         </Avatar>
         <ListItemText sx={{ marginLeft: "15px" }} primary="Home" />
       </ListItemButton>
+      <Divider />
       <ListItemButton
         onClick={() => {
           closeAppBar();
@@ -99,6 +100,8 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         </Avatar>
         <ListItemText sx={{ marginLeft: "15px" }} primary="Projects" />
       </ListItemButton>
+      <Divider />
+
       <ListItemButton
         onClick={() => {
           closeAppBar();
@@ -111,6 +114,7 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         </Avatar>
         <ListItemText sx={{ marginLeft: "15px" }} primary="Contact me" />
       </ListItemButton>
+      <Divider />
     </>
   );
 };
