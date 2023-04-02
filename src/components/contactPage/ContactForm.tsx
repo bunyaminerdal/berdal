@@ -8,7 +8,7 @@ import {
   InputLabel,
 } from "@mui/material";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -40,7 +40,7 @@ const ContactForm = () => {
   const { enqueueSnackbar } = useSnackbar();
   const [isSending, setIsSending] = useState(false);
 
-  const { handleSubmit, control } = useForm<ContactFormInputs>({
+  const { handleSubmit, control, reset } = useForm<ContactFormInputs>({
     defaultValues: {
       name: data?.user.name ?? "",
       email: data?.user.email ?? "",
@@ -49,6 +49,11 @@ const ContactForm = () => {
     },
     resolver: yupResolver(schema),
   });
+  useEffect(() => {
+    if (data)
+      reset({ name: data?.user.name ?? "", email: data?.user.email ?? "" });
+  }, [data, reset]);
+
   const onSubmit = (data: ContactFormInputs) => {
     setIsSending(true);
     contactEmail(data).then(({ data, status }) => {
