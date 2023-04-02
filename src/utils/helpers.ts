@@ -1,7 +1,5 @@
 export enum SideBarItemMap {
   "home" = "home",
-  "about" = "about",
-  "blog" = "blog",
   "projects" = "projects",
   "contact" = "contact",
   "admin" = "admin",

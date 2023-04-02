@@ -5,9 +5,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
 import FolderIcon from "@mui/icons-material/Folder";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import ConnectWithoutContactIcon from "@mui/icons-material/ConnectWithoutContact";
 import Divider from "@mui/material/Divider";
 import Typography from "@mui/material/Typography";
@@ -88,30 +86,6 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
           <HomeIcon />
         </Avatar>
         <ListItemText sx={{ marginLeft: "15px" }} primary="Home" />
-      </ListItemButton>
-      <ListItemButton
-        onClick={() => {
-          closeAppBar();
-          push("/about");
-        }}
-        selected={isActiveSideBarButton(pathname, SideBarItemMap.about)}
-      >
-        <Avatar>
-          <EmojiPeopleIcon />
-        </Avatar>
-        <ListItemText sx={{ marginLeft: "15px" }} primary="About me" />
-      </ListItemButton>
-      <ListItemButton
-        onClick={() => {
-          closeAppBar();
-          push("/blog");
-        }}
-        selected={isActiveSideBarButton(pathname, SideBarItemMap.blog)}
-      >
-        <Avatar>
-          <NewspaperIcon />
-        </Avatar>
-        <ListItemText sx={{ marginLeft: "15px" }} primary="Blog" />
       </ListItemButton>
       <ListItemButton
         onClick={() => {
