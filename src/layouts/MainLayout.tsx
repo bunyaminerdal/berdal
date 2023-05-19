@@ -66,7 +66,7 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
         </AppBar>
       </Stack>
       <Grid container flexDirection={{ xs: "row", sm: "row" }}>
-        <Grid item xs={12} sm={4} md={3} lg={2}>
+        <Grid item sx={{ width: { xs: "250px", md: "300px" } }}>
           <Stack
             sx={{
               height: { xs: "auto", sm: "100vh" },
@@ -113,10 +113,6 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
         </Grid>
         <Grid
           item
-          xs={12}
-          sm={8}
-          md={9}
-          lg={10}
           sx={{
             height: {
               xs: isOpened
@@ -127,6 +123,11 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
               sm: "100vh",
             },
             overflow: "auto",
+            width: {
+              xs: "100%",
+              sm: "calc(100vw - 250px)",
+              md: "calc(100vw - 300px)",
+            },
           }}
         >
           <Box padding="10px">{children}</Box>
