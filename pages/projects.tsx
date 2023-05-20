@@ -40,7 +40,61 @@ const Projects = () => {
             <Box sx={{ textAlign: "center" }}>Projects</Box>
           </Typography>
         </Box>
-
+        <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
+          <CardMedia
+            component="img"
+            sx={{ width: { xs: "120px", md: "200px" } }}
+            image="/images/berdal.png"
+            alt="berdal-todo"
+          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              minWidth: "200px",
+            }}
+          >
+            <CardContent sx={{ flex: "1 0 auto" }}>
+              <Typography component="div" variant="h5">
+                PERSONAL WEBSITE
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="div"
+              >
+                Next.js Typescript material-ui material-icons Prisma Supabase
+                Postgres nextauth nodemailer notistack react-hook-form Axios
+              </Typography>
+            </CardContent>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                pl: 1,
+                pb: 1,
+                gap: "10px",
+              }}
+            >
+              <MUILink
+                sx={{ cursor: "pointer" }}
+                color={theme.palette.secondary.main}
+                href="https://github.com/bunyaminerdal/berdal"
+                target="_blank"
+              >
+                <Typography>{"Github"}</Typography>
+              </MUILink>
+              <MUILink
+                sx={{ cursor: "pointer" }}
+                color={theme.palette.secondary.main}
+                href="https://bunyaminerdal.com.tr"
+                target="_blank"
+              >
+                <Typography>{"Visit"}</Typography>
+              </MUILink>
+            </Box>
+          </Box>
+        </Card>
         <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
           <CardMedia
             component="img"
@@ -65,7 +119,7 @@ const Projects = () => {
                 component="div"
               >
                 Next.js Typescript Tailwind.css Prisma Supabase Postgres
-                react-icons Axios
+                react-icons Axios react-hook-form
               </Typography>
             </CardContent>
             <Box
