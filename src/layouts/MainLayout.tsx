@@ -75,7 +75,7 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
         >
           <Stack
             sx={{
-              height: { xs: "90vh", sm: "100vh" },
+              height: { xs: "100%", sm: "100vh" },
               overflow: "auto",
               display: { xs: isOpened ? "flex" : "none", sm: "flex" },
               justifyContent: "space-between",
