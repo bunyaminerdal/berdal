@@ -71,12 +71,11 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
           item
           sx={{
             width: { xs: "100%", sm: "250px", md: "300px" },
-            height: { xs: "100%" },
           }}
         >
           <Stack
             sx={{
-              height: { xs: "calc(100vh - 68px)", sm: "100vh" },
+              height: { xs: "100%", sm: "100vh" },
               overflow: "auto",
               display: { xs: isOpened ? "flex" : "none", sm: "flex" },
               justifyContent: "space-between",
@@ -123,7 +122,7 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
           sx={{
             display: { xs: isOpened ? "none" : "block", sm: "block" },
             height: {
-              xs: "calc(100vh - 68px)",
+              xs: "100%",
               sm: "100vh",
             },
             overflow: "auto",
