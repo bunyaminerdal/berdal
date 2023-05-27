@@ -43,6 +43,7 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
           position="fixed"
           sx={{
             display: { xs: "block", sm: "none" },
+            transition: "all",
           }}
         >
           <Toolbar>
@@ -66,10 +67,16 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
         </AppBar>
       </Stack>
       <Grid container flexDirection={{ xs: "row", sm: "row" }}>
-        <Grid item sx={{ width: { xs: "250px", md: "300px" } }}>
+        <Grid
+          item
+          sx={{
+            width: { xs: "100%", sm: "250px", md: "300px" },
+            height: { xs: "100%" },
+          }}
+        >
           <Stack
             sx={{
-              height: { xs: "auto", sm: "100vh" },
+              height: { xs: "calc(100vh - 68px)", sm: "100vh" },
               overflow: "auto",
               display: { xs: isOpened ? "flex" : "none", sm: "flex" },
               justifyContent: "space-between",
@@ -114,12 +121,9 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
         <Grid
           item
           sx={{
+            display: { xs: isOpened ? "none" : "block", sm: "block" },
             height: {
-              xs: isOpened
-                ? data && isHaveAccessRight
-                  ? "calc(100vh - 505px)"
-                  : "calc(100vh - 487px)"
-                : "calc(100vh - 56px)",
+              xs: "calc(100vh - 68px)",
               sm: "100vh",
             },
             overflow: "auto",
