@@ -8,35 +8,25 @@ const LoginPageLayout = ({ children }: PropsWithChildren) => {
   const { push } = useRouter();
   return (
     <Box
-      sx={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        flexGrow: "1",
-        marginTop: { xs: "0", sm: "50px" },
-      }}
+      width="100%"
+      height="100%"
+      gap="10px"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
     >
-      <Box
-        width="100%"
-        height="100%"
-        gap="10px"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-      >
-        <Typography variant="h4">{"Sign In"}</Typography>
-        {children}
-        <Box sx={{ display: "flex", gap: "10px" }}>
-          <Typography>{"Don't have an Account?"}</Typography>
-          <MUILink
-            sx={{ cursor: "pointer" }}
-            color={theme.palette.secondary.main}
-            onClick={() => push("/register")}
-          >
-            <Typography>{"Sign Up"}</Typography>
-          </MUILink>
-        </Box>
+      <Typography variant="h4">{"Sign In"}</Typography>
+      {children}
+      <Box sx={{ display: "flex", gap: "10px" }}>
+        <Typography>{"Don't have an Account?"}</Typography>
+        <MUILink
+          sx={{ cursor: "pointer" }}
+          color={theme.palette.secondary.main}
+          onClick={() => push("/register")}
+        >
+          <Typography>{"Sign Up"}</Typography>
+        </MUILink>
       </Box>
     </Box>
   );

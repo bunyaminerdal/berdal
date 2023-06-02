@@ -36,106 +36,103 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
     setIsOpened(false);
   };
   return (
-    <Box height="100vh" overflow="hidden">
-      <Stack sx={{ height: { xs: "56px", sm: "0" } }}>
-        <AppBar
-          enableColorOnDark
-          position="fixed"
+    <Box
+      height="100vh"
+      overflow="hidden"
+      sx={{ display: "flex", flexDirection: "column", minWidth: "370px" }}
+      position="relative"
+    >
+      <Box
+        sx={{
+          height: { xs: "56px", md: "0" },
+          display: { xs: "block", md: "none" },
+        }}
+      >
+        <Toolbar
           sx={{
-            display: { xs: "block", sm: "none" },
-            transition: "all",
+            backgroundColor: `${theme.palette.primary.main}`,
+            height: { xs: "56px", md: "0" },
           }}
         >
-          <Toolbar>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1 }}
-            >
-              Bünyamin ERDAL
-            </Typography>
-            <IconButton
-              size="large"
-              edge="start"
-              sx={{ ml: 2, background: "transparent" }}
-              onClick={() => setIsOpened(!isOpened)}
-            >
-              <Menu />
-            </IconButton>
-          </Toolbar>
-        </AppBar>
-      </Stack>
-      <Grid container flexDirection={{ xs: "row", sm: "row" }}>
-        <Grid
-          item
-          sx={{
-            width: { xs: "100%", sm: "250px", md: "300px" },
-          }}
-        >
-          <Stack
-            sx={{
-              height: { xs: "100%", sm: "100vh" },
-              overflow: "auto",
-              display: { xs: isOpened ? "flex" : "none", sm: "flex" },
-              justifyContent: "space-between",
-              borderRight: `1px solid ${theme.palette.primary.main}`,
-            }}
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            color="white"
+            sx={{ flexGrow: 1 }}
           >
-            <Box>
-              <SideBarItems closeAppBar={closeAppBar} />
-            </Box>
-            <Box>
-              {!data || !isHaveAccessRight ? null : (
-                <>
-                  <Divider />
-                  <ListItemButton
-                    onClick={() => {
-                      closeAppBar();
-                      push("/admin");
-                    }}
-                    selected={isActiveSideBarButton(
-                      pathname,
-                      SideBarItemMap.admin
-                    )}
-                  >
-                    <Avatar>
-                      <AdminPanelSettingsIcon />
-                    </Avatar>
-                    <ListItemText
-                      sx={{ marginLeft: "15px" }}
-                      primary="Admin Panel"
-                    />
-                  </ListItemButton>
-                </>
-              )}
-              <Divider />
-              <Credential closeAppBar={closeAppBar} />
-              <Divider />
-              <ThemeChangeButton />
-              <Divider />
-            </Box>
-          </Stack>
-        </Grid>
-        <Grid
-          item
+            Bünyamin ERDAL
+          </Typography>
+          <IconButton
+            size="large"
+            edge="start"
+            sx={{ ml: 2, background: "transparent" }}
+            onClick={() => setIsOpened(!isOpened)}
+          >
+            <Menu />
+          </IconButton>
+        </Toolbar>
+      </Box>
+      <Box
+        sx={{
+          height: "100%",
+          display: "flex",
+        }}
+      >
+        <Box
           sx={{
-            display: { xs: isOpened ? "none" : "block", sm: "block" },
-            height: {
-              xs: "100%",
-              sm: "100vh",
+            backgroundColor: `${theme.palette.background.paper}`,
+            width: { xs: "100%", md: "350px" },
+            position: { xs: "absolute", md: "initial" },
+            top: "56px",
+            left: "0",
+            right: "0",
+            bottom: "0",
+            display: { xs: `${isOpened ? "flex" : "none"}`, md: "flex" },
+            flexDirection: "column",
+            borderRight: {
+              xs: "none",
+              md: `1px solid ${theme.palette.primary.main}`,
             },
-            overflow: "auto",
-            width: {
-              xs: "100%",
-              sm: "calc(100vw - 250px)",
-              md: "calc(100vw - 300px)",
-            },
+            zIndex: "10",
           }}
         >
-          <Box padding="10px">{children}</Box>
-        </Grid>
-      </Grid>
+          <Box sx={{ flex: "1" }}>
+            <SideBarItems closeAppBar={closeAppBar} />
+          </Box>
+          <Box sx={{ flex: "0" }}>
+            {!data || !isHaveAccessRight ? null : (
+              <>
+                <Divider />
+                <ListItemButton
+                  onClick={() => {
+                    closeAppBar();
+                    push("/admin");
+                  }}
+                  selected={isActiveSideBarButton(
+                    pathname,
+                    SideBarItemMap.admin
+                  )}
+                >
+                  <Avatar>
+                    <AdminPanelSettingsIcon />
+                  </Avatar>
+                  <ListItemText
+                    sx={{ marginLeft: "15px" }}
+                    primary="Admin Panel"
+                  />
+                </ListItemButton>
+              </>
+            )}
+            <Divider />
+            <Credential closeAppBar={closeAppBar} />
+            <Divider />
+            <ThemeChangeButton />
+            <Divider />
+          </Box>
+        </Box>
+        <Box sx={{ width: "250px", flex: "1" }}>{children}</Box>
+      </Box>
     </Box>
   );
 }
@@ -143,3 +140,42 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
 export default function MainLayout({ children }: React.PropsWithChildren) {
   return <MainLayoutContent>{children}</MainLayoutContent>;
 }
+
+// <Grid container flexDirection={{ xs: "row", sm: "row" }}>
+//   <Grid
+//     item
+//     sx={{
+//       width: { xs: "100%", sm: "250px", md: "300px" },
+//     }}
+//   >
+//     <Stack
+//       sx={{
+//         height: { xs: "100%", sm: "100vh" },
+//         overflow: "auto",
+//         display: { xs: isOpened ? "flex" : "none", sm: "flex" },
+//         justifyContent: "space-between",
+//         borderRight: `1px solid ${theme.palette.primary.main}`,
+//       }}
+//     >
+
+//     </Stack>
+//   </Grid>
+//   <Grid
+//     item
+//     sx={{
+//       display: { xs: isOpened ? "none" : "block", sm: "block" },
+//       height: {
+//         xs: "100%",
+//         sm: "100vh",
+//       },
+//       overflow: "auto",
+//       width: {
+//         xs: "100%",
+//         sm: "calc(100vw - 250px)",
+//         md: "calc(100vw - 300px)",
+//       },
+//     }}
+//   >
+
+//   </Grid>
+// </Grid>;

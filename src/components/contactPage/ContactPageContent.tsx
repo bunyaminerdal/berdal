@@ -24,21 +24,23 @@ const ContactPageContent = () => {
           justifyContent="center"
           alignItems="center"
           flexDirection="column"
+          padding="5px"
         >
           <Typography variant="h4">{"Contact me"}</Typography>
           <Typography>{"Don't hesitate to get in touch with me. "}</Typography>
           {(!data?.user || status !== "authenticated") && (
             <>
-              <Box sx={{ display: "flex", gap: "10px" }}>
-                <Typography>
+              <Box sx={{ display: "flex", gap: "5px", minWidth: "375px" }}>
+                <Typography flex="1">
                   {"it's easier for me to recognize people when they "}
                 </Typography>
                 <MUILink
+                  flex="0"
                   sx={{ cursor: "pointer" }}
                   color={theme.palette.secondary.main}
                   onClick={() => push("/login?callbackUrl=/contact")}
                 >
-                  <Typography>{"Sign In"}</Typography>
+                  <Typography width="60px">{"Sign In"}</Typography>
                 </MUILink>
               </Box>
               <Typography>

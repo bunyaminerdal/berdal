@@ -13,144 +13,137 @@ const Projects = () => {
   const { push } = useRouter();
   return (
     <Box
-      sx={{
-        display: "flex",
-        width: "100%",
-        height: "100%",
-        flexGrow: "1",
-        marginTop: { xs: "0", sm: "50px" },
-      }}
+      width="100%"
+      height="100%"
+      gap="10px"
+      display="flex"
+      // justifyContent="center"
+      alignItems="center"
+      flexDirection="column"
+      padding="10px"
+      overflow="auto"
+      sx={{ marginTop: { xs: "0", sm: "50px" } }}
     >
       <Box
         width="100%"
-        height="100%"
-        gap="10px"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
+        // margin="50px 0 10px 0"
+        padding="10px"
+        borderBottom="1px solid #3C1B6D"
       >
-        <Box
-          width="100%"
-          // margin="50px 0 10px 0"
-          padding="10px"
-          borderBottom="1px solid #3C1B6D"
-        >
-          <Typography color="text.primary" variant="h2">
-            <Box sx={{ textAlign: "center" }}>Projects</Box>
-          </Typography>
-        </Box>
-        <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
-          <CardMedia
-            component="img"
-            sx={{ width: { xs: "120px", md: "200px" } }}
-            image="/images/berdal.png"
-            alt="berdal-todo"
-          />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              minWidth: "200px",
-            }}
-          >
-            <CardContent sx={{ flex: "1 0 auto" }}>
-              <Typography component="div" variant="h5">
-                PERSONAL WEBSITE
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                component="div"
-              >
-                Next.js Typescript material-ui material-icons Prisma Supabase
-                Postgres nextauth nodemailer notistack react-hook-form Axios
-              </Typography>
-            </CardContent>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                pl: 1,
-                pb: 1,
-                gap: "10px",
-              }}
-            >
-              <MUILink
-                sx={{ cursor: "pointer" }}
-                color={theme.palette.secondary.main}
-                href="https://github.com/bunyaminerdal/berdal"
-                target="_blank"
-              >
-                <Typography>{"Github"}</Typography>
-              </MUILink>
-              <MUILink
-                sx={{ cursor: "pointer" }}
-                color={theme.palette.secondary.main}
-                href="https://bunyaminerdal.com.tr"
-                target="_blank"
-              >
-                <Typography>{"Visit"}</Typography>
-              </MUILink>
-            </Box>
-          </Box>
-        </Card>
-        <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
-          <CardMedia
-            component="img"
-            sx={{ width: { xs: "120px", md: "200px" } }}
-            image="/images/berdal-todo.png"
-            alt="berdal-todo"
-          />
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              minWidth: "200px",
-            }}
-          >
-            <CardContent sx={{ flex: "1 0 auto" }}>
-              <Typography component="div" variant="h5">
-                TODO APP
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                component="div"
-              >
-                Next.js Typescript Tailwind.css Prisma Supabase Postgres
-                react-icons Axios react-hook-form
-              </Typography>
-            </CardContent>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                pl: 1,
-                pb: 1,
-                gap: "10px",
-              }}
-            >
-              <MUILink
-                sx={{ cursor: "pointer" }}
-                color={theme.palette.secondary.main}
-                href="https://github.com/bunyaminerdal/berdal-todo-app"
-                target="_blank"
-              >
-                <Typography>{"Github"}</Typography>
-              </MUILink>
-              <MUILink
-                sx={{ cursor: "pointer" }}
-                color={theme.palette.secondary.main}
-                href="https://todo.bunyaminerdal.com.tr"
-                target="_blank"
-              >
-                <Typography>{"Visit"}</Typography>
-              </MUILink>
-            </Box>
-          </Box>
-        </Card>
+        <Typography color="text.primary" variant="h2">
+          <Box sx={{ textAlign: "center" }}>Projects</Box>
+        </Typography>
       </Box>
+      <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
+        <CardMedia
+          component="img"
+          sx={{ width: { xs: "120px", md: "200px" } }}
+          image="/images/berdal.png"
+          alt="berdal-todo"
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minWidth: "200px",
+          }}
+        >
+          <CardContent sx={{ flex: "1 0 auto" }}>
+            <Typography component="div" variant="h5">
+              PERSONAL WEBSITE
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              Next.js Typescript material-ui material-icons Prisma Supabase
+              Postgres nextauth nodemailer notistack react-hook-form Axios
+            </Typography>
+          </CardContent>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              pl: 1,
+              pb: 1,
+              gap: "10px",
+            }}
+          >
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://github.com/bunyaminerdal/berdal"
+              target="_blank"
+            >
+              <Typography>{"Github"}</Typography>
+            </MUILink>
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://bunyaminerdal.com.tr"
+              target="_blank"
+            >
+              <Typography>{"Visit"}</Typography>
+            </MUILink>
+          </Box>
+        </Box>
+      </Card>
+      <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
+        <CardMedia
+          component="img"
+          sx={{ width: { xs: "120px", md: "200px" } }}
+          image="/images/berdal-todo.png"
+          alt="berdal-todo"
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minWidth: "200px",
+          }}
+        >
+          <CardContent sx={{ flex: "1 0 auto" }}>
+            <Typography component="div" variant="h5">
+              TODO APP
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              Next.js Typescript Tailwind.css Prisma Supabase Postgres
+              react-icons Axios react-hook-form
+            </Typography>
+          </CardContent>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              pl: 1,
+              pb: 1,
+              gap: "10px",
+            }}
+          >
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://github.com/bunyaminerdal/berdal-todo-app"
+              target="_blank"
+            >
+              <Typography>{"Github"}</Typography>
+            </MUILink>
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://todo.bunyaminerdal.com.tr"
+              target="_blank"
+            >
+              <Typography>{"Visit"}</Typography>
+            </MUILink>
+          </Box>
+        </Box>
+      </Card>
     </Box>
   );
 };
