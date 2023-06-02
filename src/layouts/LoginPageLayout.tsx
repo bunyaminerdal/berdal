@@ -9,12 +9,16 @@ const LoginPageLayout = ({ children }: PropsWithChildren) => {
   return (
     <Box
       width="100%"
-      height="100%"
+      sx={{
+        height: { xs: "calc(100dvh - 56px)", md: "100%" },
+        overflow: "auto",
+        justifyContent: { xs: "flex-start", md: "center" },
+      }}
       gap="10px"
       display="flex"
-      justifyContent="center"
       alignItems="center"
       flexDirection="column"
+      padding="20px 5px"
     >
       <Typography variant="h4">{"Sign In"}</Typography>
       {children}

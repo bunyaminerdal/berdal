@@ -8,12 +8,16 @@ const Home = () => {
   return (
     <Box
       width="100%"
-      height="100%"
+      sx={{
+        height: { xs: "calc(100dvh - 56px)", md: "100%" },
+        overflow: "auto",
+        justifyContent: { xs: "flex-start", md: "center" },
+      }}
       gap="10px"
       display="flex"
-      justifyContent="center"
       alignItems="center"
       flexDirection="column"
+      padding="20px 5px"
     >
       <Box
         sx={{

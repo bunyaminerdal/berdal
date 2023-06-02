@@ -21,10 +21,10 @@ const ContactPageContent = () => {
           height="100%"
           gap="10px"
           display="flex"
-          justifyContent="center"
+          sx={{ justifyContent: { xs: "flex-start", md: "center" } }}
           alignItems="center"
           flexDirection="column"
-          padding="5px"
+          padding="20px 5px"
         >
           <Typography variant="h4">{"Contact me"}</Typography>
           <Typography>{"Don't hesitate to get in touch with me. "}</Typography>

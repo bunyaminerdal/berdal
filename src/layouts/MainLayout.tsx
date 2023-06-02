@@ -37,9 +37,13 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
   };
   return (
     <Box
-      height="100vh"
+      height="100%"
       overflow="hidden"
-      sx={{ display: "flex", flexDirection: "column", minWidth: "370px" }}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minWidth: "370px",
+      }}
       position="relative"
     >
       <Box
@@ -131,7 +135,14 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
             <Divider />
           </Box>
         </Box>
-        <Box sx={{ width: "250px", flex: "1" }}>{children}</Box>
+        <Box
+          sx={{
+            width: "250px",
+            flex: "1",
+          }}
+        >
+          {children}
+        </Box>
       </Box>
     </Box>
   );
@@ -140,42 +151,3 @@ function MainLayoutContent({ children }: React.PropsWithChildren) {
 export default function MainLayout({ children }: React.PropsWithChildren) {
   return <MainLayoutContent>{children}</MainLayoutContent>;
 }
-
-// <Grid container flexDirection={{ xs: "row", sm: "row" }}>
-//   <Grid
-//     item
-//     sx={{
-//       width: { xs: "100%", sm: "250px", md: "300px" },
-//     }}
-//   >
-//     <Stack
-//       sx={{
-//         height: { xs: "100%", sm: "100vh" },
-//         overflow: "auto",
-//         display: { xs: isOpened ? "flex" : "none", sm: "flex" },
-//         justifyContent: "space-between",
-//         borderRight: `1px solid ${theme.palette.primary.main}`,
-//       }}
-//     >
-
-//     </Stack>
-//   </Grid>
-//   <Grid
-//     item
-//     sx={{
-//       display: { xs: isOpened ? "none" : "block", sm: "block" },
-//       height: {
-//         xs: "100%",
-//         sm: "100vh",
-//       },
-//       overflow: "auto",
-//       width: {
-//         xs: "100%",
-//         sm: "calc(100vw - 250px)",
-//         md: "calc(100vw - 300px)",
-//       },
-//     }}
-//   >
-
-//   </Grid>
-// </Grid>;

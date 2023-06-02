@@ -7,7 +7,7 @@ const ContactFormLayout = ({ children }: PropsWithChildren) => {
       sx={{
         display: "flex",
         width: "100%",
-        height: "100%",
+        height: { xs: "calc(100dvh - 56px)", md: "100%" },
         overflow: "auto",
       }}
     >

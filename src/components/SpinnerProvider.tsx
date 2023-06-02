@@ -17,12 +17,12 @@ export default function SpinnerProvider({ children }: React.PropsWithChildren) {
   const [spin, setSpin] = useState(false);
 
   return (
-    <Box style={{ width: "100vw", height: "100vh", position: "relative" }}>
+    <Box style={{ width: "100vw", height: "100dvh", position: "relative" }}>
       {spin && (
         <Box
           style={{
             width: "100vw",
-            height: "100vh",
+            height: "100dvh",
             position: "fixed",
             backgroundColor: "rgb(100,100,100,0.5)",
             zIndex: 1031,

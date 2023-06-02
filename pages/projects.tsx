@@ -4,25 +4,24 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useRouter } from "next/router";
 import React from "react";
 import { Link as MUILink } from "@mui/material";
 
 const Projects = () => {
   const theme = useTheme();
-  const { push } = useRouter();
   return (
     <Box
       width="100%"
-      height="100%"
+      sx={{
+        height: { xs: "calc(100dvh - 56px)", md: "100%" },
+        overflow: "auto",
+        // justifyContent: { xs: "flex-start", md: "center" },
+      }}
       gap="10px"
       display="flex"
-      // justifyContent="center"
       alignItems="center"
       flexDirection="column"
-      padding="10px"
-      overflow="auto"
-      sx={{ marginTop: { xs: "0", sm: "50px" } }}
+      padding="20px 10px"
     >
       <Box
         width="100%"
@@ -34,7 +33,13 @@ const Projects = () => {
           <Box sx={{ textAlign: "center" }}>Projects</Box>
         </Typography>
       </Box>
-      <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
+      <Card
+        sx={{
+          display: "flex",
+          width: { md: "100%", lg: "70%" },
+          minHeight: "200px",
+        }}
+      >
         <CardMedia
           component="img"
           sx={{ width: { xs: "120px", md: "200px" } }}
@@ -89,7 +94,13 @@ const Projects = () => {
           </Box>
         </Box>
       </Card>
-      <Card sx={{ display: "flex", width: { md: "100%", lg: "70%" } }}>
+      <Card
+        sx={{
+          display: "flex",
+          width: { md: "100%", lg: "70%" },
+          minHeight: "200px",
+        }}
+      >
         <CardMedia
           component="img"
           sx={{ width: { xs: "120px", md: "200px" } }}
