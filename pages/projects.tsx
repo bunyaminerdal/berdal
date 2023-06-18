@@ -155,6 +155,67 @@ const Projects = () => {
           </Box>
         </Box>
       </Card>
+      <Card
+        sx={{
+          display: "flex",
+          width: { md: "100%", lg: "70%" },
+          minHeight: "200px",
+        }}
+      >
+        <CardMedia
+          component="img"
+          sx={{ width: { xs: "120px", md: "200px" } }}
+          image="/images/berdal-chat.png"
+          alt="berdal-todo"
+        />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            minWidth: "200px",
+          }}
+        >
+          <CardContent sx={{ flex: "1 0 auto" }}>
+            <Typography component="div" variant="h5">
+              REALTIME CHAT APP
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              color="text.secondary"
+              component="div"
+            >
+              Next.js Typescript Tailwind.css daisyUi Prisma Postgres
+              Supabase(db and realtime websocket) react-icons Axios
+            </Typography>
+          </CardContent>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              pl: 1,
+              pb: 1,
+              gap: "10px",
+            }}
+          >
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://github.com/bunyaminerdal/berdal-chat"
+              target="_blank"
+            >
+              <Typography>{"Github"}</Typography>
+            </MUILink>
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://chat.bunyaminerdal.dev"
+              target="_blank"
+            >
+              <Typography>{"Visit"}</Typography>
+            </MUILink>
+          </Box>
+        </Box>
+      </Card>
     </Box>
   );
 };
