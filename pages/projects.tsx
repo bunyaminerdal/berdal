@@ -13,9 +13,9 @@ const Projects = () => {
     <Box
       width="100%"
       sx={{
-        height: { xs: "calc(100dvh - 56px)", md: "100%" },
+        height: { xs: "calc(100dvh - 56px)", sm: "100%" },
         overflow: "auto",
-        // justifyContent: { xs: "flex-start", md: "center" },
+        // justifyContent: { xs: "flex-start", sm: "center" },
       }}
       gap="10px"
       display="flex"
@@ -39,14 +39,17 @@ const Projects = () => {
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
           alignItems: "center",
-          width: { md: "100%", lg: "70%" },
+          width: { xs: "100%", lg: "70%" },
           borderRadius: "5px",
           backgroundColor: "rgba(200,200,200,0.1)",
         }}
       >
         <CardMedia
           component="img"
-          sx={{ width: "200px", minHeight: "200px", borderRadius: "5px" }}
+          sx={{
+            width: { xs: "100%", sm: "200px" },
+            borderRadius: "5px",
+          }}
           image="/images/berdal.png"
           alt="berdal"
         />
@@ -102,14 +105,17 @@ const Projects = () => {
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
           alignItems: "center",
-          width: { md: "100%", lg: "70%" },
+          width: { xs: "100%", lg: "70%" },
           borderRadius: "5px",
           backgroundColor: "rgba(200,200,200,0.1)",
         }}
       >
         <CardMedia
           component="img"
-          sx={{ width: "200px", minHeight: "200px", borderRadius: "5px" }}
+          sx={{
+            width: { xs: "100%", sm: "200px" },
+            borderRadius: "5px",
+          }}
           image="/images/berdal-chat.png"
           alt="berdal-chat"
         />
@@ -166,14 +172,17 @@ const Projects = () => {
           display: "flex",
           flexDirection: { xs: "column", sm: "row" },
           alignItems: "center",
-          width: { md: "100%", lg: "70%" },
+          width: { xs: "100%", lg: "70%" },
           borderRadius: "5px",
           backgroundColor: "rgba(200,200,200,0.1)",
         }}
       >
         <CardMedia
           component="img"
-          sx={{ width: "200px", minHeight: "200px", borderRadius: "5px" }}
+          sx={{
+            width: { xs: "100%", sm: "200px" },
+            borderRadius: "5px",
+          }}
           image="/images/berdal-todo.png"
           alt="berdal-todo"
         />
