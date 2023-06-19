@@ -33,39 +33,42 @@ const Projects = () => {
           <Box sx={{ textAlign: "center" }}>Projects</Box>
         </Typography>
       </Box>
-      <Card
+
+      <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
           width: { md: "100%", lg: "70%" },
-          minHeight: "200px",
+          borderRadius: "5px",
+          backgroundColor: "rgba(200,200,200,0.1)",
         }}
       >
         <CardMedia
           component="img"
-          sx={{ width: { xs: "120px", md: "200px" } }}
+          sx={{ width: "200px", minHeight: "200px", borderRadius: "5px" }}
           image="/images/berdal.png"
-          alt="berdal-todo"
+          alt="berdal"
         />
         <Box
+          padding="10px"
           sx={{
             display: "flex",
             flexDirection: "column",
-            minWidth: "200px",
+            height: "100%",
           }}
         >
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
-              PERSONAL WEBSITE
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Next.js Typescript material-ui material-icons Prisma Supabase
-              Postgres nextauth nodemailer notistack react-hook-form Axios
-            </Typography>
-          </CardContent>
+          <Typography component="div" variant="h5">
+            PERSONAL WEBSITE
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            component="div"
+          >
+            Next.js Typescript material-ui material-icons Prisma Supabase
+            Postgres nextauth nodemailer notistack react-hook-form Axios
+          </Typography>
           <Box
             sx={{
               display: "flex",
@@ -93,101 +96,43 @@ const Projects = () => {
             </MUILink>
           </Box>
         </Box>
-      </Card>
-      <Card
+      </Box>
+      <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
           width: { md: "100%", lg: "70%" },
-          minHeight: "200px",
+          borderRadius: "5px",
+          backgroundColor: "rgba(200,200,200,0.1)",
         }}
       >
         <CardMedia
           component="img"
-          sx={{ width: { xs: "120px", md: "200px" } }}
-          image="/images/berdal-todo.png"
-          alt="berdal-todo"
-        />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            minWidth: "200px",
-          }}
-        >
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
-              TODO APP
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Next.js Typescript Tailwind.css Prisma Supabase Postgres
-              react-icons Axios react-hook-form
-            </Typography>
-          </CardContent>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              pl: 1,
-              pb: 1,
-              gap: "10px",
-            }}
-          >
-            <MUILink
-              sx={{ cursor: "pointer" }}
-              color={theme.palette.secondary.main}
-              href="https://github.com/bunyaminerdal/berdal-todo-app"
-              target="_blank"
-            >
-              <Typography>{"Github"}</Typography>
-            </MUILink>
-            <MUILink
-              sx={{ cursor: "pointer" }}
-              color={theme.palette.secondary.main}
-              href="https://todo.bunyaminerdal.dev"
-              target="_blank"
-            >
-              <Typography>{"Visit"}</Typography>
-            </MUILink>
-          </Box>
-        </Box>
-      </Card>
-      <Card
-        sx={{
-          display: "flex",
-          width: { md: "100%", lg: "70%" },
-          minHeight: "200px",
-        }}
-      >
-        <CardMedia
-          component="img"
-          sx={{ width: { xs: "120px", md: "200px" } }}
+          sx={{ width: "200px", minHeight: "200px", borderRadius: "5px" }}
           image="/images/berdal-chat.png"
-          alt="berdal-todo"
+          alt="berdal-chat"
         />
         <Box
+          padding="10px"
           sx={{
             display: "flex",
             flexDirection: "column",
-            minWidth: "200px",
+            // justifyContent: "space-between",
+            height: "100%",
           }}
         >
-          <CardContent sx={{ flex: "1 0 auto" }}>
-            <Typography component="div" variant="h5">
-              REALTIME CHAT APP
-            </Typography>
-            <Typography
-              variant="subtitle1"
-              color="text.secondary"
-              component="div"
-            >
-              Next.js Typescript Tailwind.css daisyUi Prisma Postgres
-              Supabase(db and realtime websocket) react-icons Axios
-            </Typography>
-          </CardContent>
+          <Typography component="div" variant="h5">
+            REALTIME CHAT APP
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            component="div"
+          >
+            Next.js Typescript Tailwind.css daisyUi Prisma Postgres Supabase(db
+            and realtime websocket) react-icons Axios
+          </Typography>
           <Box
             sx={{
               display: "flex",
@@ -215,7 +160,73 @@ const Projects = () => {
             </MUILink>
           </Box>
         </Box>
-      </Card>
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: "center",
+          width: { md: "100%", lg: "70%" },
+          borderRadius: "5px",
+          backgroundColor: "rgba(200,200,200,0.1)",
+        }}
+      >
+        <CardMedia
+          component="img"
+          sx={{ width: "200px", minHeight: "200px", borderRadius: "5px" }}
+          image="/images/berdal-todo.png"
+          alt="berdal-todo"
+        />
+        <Box
+          padding="10px"
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            // justifyContent: "space-between",
+            height: "100%",
+          }}
+        >
+          <Typography component="div" variant="h5">
+            TODO APP
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            color="text.secondary"
+            component="div"
+          >
+            Next.js Typescript Tailwind.css Prisma Supabase Postgres react-icons
+            Axios react-hook-form
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              pl: 1,
+              pb: 1,
+              gap: "10px",
+
+              marginY: "auto",
+            }}
+          >
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://github.com/bunyaminerdal/berdal-todo-app"
+              target="_blank"
+            >
+              <Typography>{"Github"}</Typography>
+            </MUILink>
+            <MUILink
+              sx={{ cursor: "pointer" }}
+              color={theme.palette.secondary.main}
+              href="https://todo.bunyaminerdal.dev"
+              target="_blank"
+            >
+              <Typography>{"Visit"}</Typography>
+            </MUILink>
+          </Box>
+        </Box>
+      </Box>
     </Box>
   );
 };
