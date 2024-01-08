@@ -4,6 +4,7 @@ import { hash } from "bcrypt";
 import { render } from "@react-email/render";
 import VerifyEmail from "@src/utils/VerifyEmail";
 import jwt from "jsonwebtoken";
+import { sendVerificationEmail } from "@src/utils/mail";
 var nodemailer = require("nodemailer");
 
 export default async function handler(
@@ -27,35 +28,19 @@ export default async function handler(
         password: await hash(password, 10),
       },
     });
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST || "",
-      port: process.env.EMAIL_PORT || "",
-      auth: {
-        user: process.env.EMAIL_USER || "",
-        pass: process.env.EMAIL_PASS || "",
-      },
-    });
+
     const token = jwt.sign(
       {
         email: user.email,
       },
       process.env.NEXTAUTH_SECRET ?? "no-secret"
     );
-    const emailHtml = render(
-      VerifyEmail({
-        url: `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`,
-        name: user.name,
-      })
-    );
 
-    const options = {
-      from: "no-reply@bunyaminerdal.com.tr",
-      to: user.email,
-      subject: "bunyaminerdal.com.tr Email Verification",
-      html: emailHtml,
-    };
     try {
-      await transporter.sendMail(options);
+      await sendVerificationEmail(
+        user.email,
+        token,
+      );
       return res.status(200).json({
         message: "Verification Email Sended",
         email: user.email,
