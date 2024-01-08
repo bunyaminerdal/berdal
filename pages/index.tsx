@@ -39,9 +39,9 @@ const Home = () => {
         >
           <Image
             alt="Bunyamin Erdal"
-            src="/images/avatar.jpg"
+            src="/images/be.png"
             width={250}
-            height={280}
+            height={250}
             placeholder="empty"
           />
         </Box>

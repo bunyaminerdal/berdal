@@ -44,9 +44,9 @@ const SideBarItems = ({ closeAppBar }: { closeAppBar: () => void }) => {
         >
           <Image
             alt="Bunyamin Erdal"
-            src="/images/avatar.jpg"
+            src="/images/be.png"
             width={120}
-            height={130}
+            height={120}
             placeholder="empty"
           />
         </Box>
