@@ -1,11 +1,8 @@
 import prisma from "@lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
 import { hash } from "bcrypt";
-import { render } from "@react-email/render";
-import VerifyEmail from "@src/utils/VerifyEmail";
 import jwt from "jsonwebtoken";
 import { sendVerificationEmail } from "@src/utils/mail";
-var nodemailer = require("nodemailer");
 
 export default async function handler(
   req: NextApiRequest,
@@ -28,6 +25,8 @@ export default async function handler(
         password: await hash(password, 10),
       },
     });
+    
+    if(!user || !user.email || !user.name) return res.status(400).json("Email send failed!");
 
     const token = jwt.sign(
       {
@@ -35,7 +34,6 @@ export default async function handler(
       },
       process.env.NEXTAUTH_SECRET ?? "no-secret"
     );
-
     try {
       await sendVerificationEmail(
         user.email,

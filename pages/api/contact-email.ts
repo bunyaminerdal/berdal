@@ -1,7 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextApiRequest, NextApiResponse } from "next";
 import { sendContactEmail } from "@src/utils/mail";
-var nodemailer = require("nodemailer");
 
 export default async function handler(
   req: NextApiRequest,
