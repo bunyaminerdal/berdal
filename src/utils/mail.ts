@@ -32,7 +32,7 @@ export const  sendContactEmail = async (
 ) => {
   await resend.emails.send({
     from: 'mail@bunyaminerdal.com',
-    to: "bunyaminerdal86@gmail.com",
+    to: process.env.CONTACT_EMAIL??'',
     subject: `Contact Email - ${subject}`,
     html: `<p>Contact Email from, ${name} , ${email}</p><p><p><span>${context}</span></p></p>`,
   });

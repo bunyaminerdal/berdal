@@ -21,7 +21,7 @@ const CopyRight = () => {
         </Typography>
       </MUILink>
       <Typography color="text.primary" variant="body2">
-        {new Date().getFullYear()}
+        {"2022 - " + new Date().getFullYear()}
         {"."}
       </Typography>
     </Box>

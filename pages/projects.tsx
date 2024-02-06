@@ -92,7 +92,7 @@ const Projects = () => {
             <MUILink
               sx={{ cursor: "pointer" }}
               color={theme.palette.secondary.main}
-              href="https://bunyaminerdal.dev"
+              href="https://old.bunyaminerdal.dev"
               target="_blank"
             >
               <Typography>{"Visit"}</Typography>
