@@ -25,7 +25,7 @@
     "axios": "^1.9.0",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
-    "next": "15.3.1",
+    "next": "15.4.8",
     "next-auth": "^4.24.11",
     "notistack": "^3.0.2",
     "react": "19.1.0",
